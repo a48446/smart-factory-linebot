@@ -9,6 +9,7 @@ import requests
 from selenium import webdriver
 
 from selenium.webdriver.chrome.options import Options
+
 line_bot_api = LineBotApi('ZnFx4dn7xECPlisBxNk16yZS2bOphDdMNKCXm2VOMaHHtjKbEkfWTt6fxDVAZVuXl5Wr3CIHE4J3FYeqv/I/fPJ3UBCjYAAhlZK2hSgw3LN8JeN2BqHVZsW9CEPHRtQRCM7ZzI/zm3/owADNERLy4QdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('d4b77968c644b0f22c57fba9abdd5488')
 
@@ -58,11 +59,7 @@ def weatherstatus(self):
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event: MessageEvent):
-    if TextMessage != None：
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=weatherstatus.content)
-    )
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(weatherstatus.content))
 
 # @handler.add(MessageEvent, message=TextMessage)
 # def message_text(event: MessageEvent):
