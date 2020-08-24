@@ -5,7 +5,10 @@ from django.views.decorators.csrf import csrf_exempt
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
+import requests
+from selenium import webdriver
 
+from selenium.webdriver.chrome.options import Options
 line_bot_api = LineBotApi('ZnFx4dn7xECPlisBxNk16yZS2bOphDdMNKCXm2VOMaHHtjKbEkfWTt6fxDVAZVuXl5Wr3CIHE4J3FYeqv/I/fPJ3UBCjYAAhlZK2hSgw3LN8JeN2BqHVZsW9CEPHRtQRCM7ZzI/zm3/owADNERLy4QdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('d4b77968c644b0f22c57fba9abdd5488')
 

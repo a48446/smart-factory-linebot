@@ -11,3 +11,5 @@ sqlparse==0.3.0
 urllib3==1.25.7
 gunicorn == 19.7.1
 six
+requests
+selenium
