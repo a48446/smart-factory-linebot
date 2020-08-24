@@ -58,12 +58,11 @@ def weatherstatus(self):
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event: MessageEvent):
-    if (event.message.text.split(' ')[0]=="天氣預報") and (len(event.message.text.split(' '))==2):
-            sid=event.message.text.split(' ')[1]
-            content=weatherstatus(content)
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=event.message.text))
+    if TextMessage != None：
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=weatherstatus.content)
+    )
 
 # @handler.add(MessageEvent, message=TextMessage)
 # def message_text(event: MessageEvent):
