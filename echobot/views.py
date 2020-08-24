@@ -11,27 +11,27 @@ from selenium.webdriver.chrome.options import Options
 line_bot_api = LineBotApi('ZnFx4dn7xECPlisBxNk16yZS2bOphDdMNKCXm2VOMaHHtjKbEkfWTt6fxDVAZVuXl5Wr3CIHE4J3FYeqv/I/fPJ3UBCjYAAhlZK2hSgw3LN8JeN2BqHVZsW9CEPHRtQRCM7ZzI/zm3/owADNERLy4QdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('d4b77968c644b0f22c57fba9abdd5488')
 
-
 @csrf_exempt
-def callback(request):
+@require_POST
+def webhook(request: HttpRequest):
+    signature = request.headers["X-Line-Signature"]
+    body = request.body.decode()
 
-    if request.method == 'POST':
-        signature = request.META['HTTP_X_LINE_SIGNATURE']
-        body = request.body.decode('utf-8')
+    try:
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        messages = (
+            "Invalid signature. Please check your channel access token/channel secret."
+        )
+        logger.error(messages)
+        return HttpResponseBadRequest(messages)
+    return HttpResponse("OK")
 
-        try:
-            events = parser.parse(body, signature)
-        except InvalidSignatureError:
-            return HttpResponseForbidden()
-        except LineBotApiError:
-            return HttpResponseBadRequest()
 
-        for event in events:
-            if isinstance(event, MessageEvent):
-                line_bot_api.reply_message(
-                    event.reply_token,
-                   TextSendMessage(text=event.message.text)
-                )
-        return HttpResponse()
-    else:
-        return HttpResponseBadRequest()
+@handler.add(event=MessageEvent, message=TextMessage)
+def handl_message(event: MessageEvent):
+    if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+        line_bot_api.reply_message(
+            reply_token=event.reply_token,
+            messages=TextSendMessage(text=event.message.text),
+        )
