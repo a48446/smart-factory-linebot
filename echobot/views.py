@@ -7,35 +7,33 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-
+from django.views.decorators.http import require_POST
 
 
 line_bot_api = LineBotApi('q7TWa/81a0nmW9GnqF6+u8qaFoMbi6q3Dq5VK2QM7FV8UIx3nQk5+luk5GpASk/bm5qtAmimAyA2/Ifdg6a0hH3dwMdfdAoRiGE8TF/IiRXriLsK7j9FDHlQUC34zr7EXiktLqyT5btGhtCTJXbTZQdB04t89/1O/w1cDnyilFU=')
 parser = WebhookHandler("57141ec8f7ba725d4fa3fa97a5bd5169")
 
-
 @csrf_exempt
-def callback(request):
+@require_POST
+def callback(request: HttpRequest):
+    signature = request.headers["X-Line-Signature"]
+    body = request.body.decode()
 
-    if request.method == 'POST':
-        signature = request.META['HTTP_X_LINE_SIGNATURE']
-        body = request.body.decode('utf-8')
+    try:
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        messages = (
+            "Invalid signature. Please check your channel access token/channel secret."
+        )
+        logger.error(messages)
+        return HttpResponseBadRequest(messages)
+    return HttpResponse("OK")
 
-        try:
-            events = parser.parse(body, signature)
-        except InvalidSignatureError:
-            return HttpResponseForbidden()
-        
-        for event in events:
-            if isinstance(event, MessageEvent):
-                line_bot_api.reply_message(
-                    event.reply_token,
-                   TextSendMessage(text=event.message.text)
-                )
-        return HttpResponse()
-    else:
-        return HttpResponseBadRequest()
-
+def handl_message(event: MessageEvent):
+      line_bot_api.reply_message(
+          reply_token=event.reply_token,
+          messages=TextSendMessage(text=event.message.text),
+      )
 def crawler():
     if 1:
         options = Options()
