@@ -18,7 +18,6 @@ parser = WebhookHandler("57141ec8f7ba725d4fa3fa97a5bd5169")
 def callback(request: HttpRequest):
     signature = request.headers["X-Line-Signature"]
     body = request.body.decode()
-
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
@@ -30,10 +29,11 @@ def callback(request: HttpRequest):
     return HttpResponse("OK")
 
 def handl_message(event: MessageEvent):
-      line_bot_api.reply_message(
-          reply_token=event.reply_token,
-          messages=TextSendMessage(text=event.message.text),
-      )
+    line_bot_api.reply_message(
+        reply_token=event.reply_token,
+        messages=TextSendMessage(text=event.message.text),
+    )
+    
 def crawler():
     if 1:
         options = Options()
