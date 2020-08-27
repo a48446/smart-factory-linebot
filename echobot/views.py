@@ -12,27 +12,21 @@ line_bot_api = LineBotApi('q7TWa/81a0nmW9GnqF6+u8qaFoMbi6q3Dq5VK2QM7FV8UIx3nQk5+
 parser = WebhookParser('57141ec8f7ba725d4fa3fa97a5bd5169')
 
 
-def webhook(request: HttpRequest):
-    signature = request.headers["X-Line-Signature"]
-    body = request.body.decode()
+@csrf_exempt
+def callback(request: HttpRequest) -> HttpResponse:
+    
+    if request.method == "POST":
 
-    try:
-        handler.handle(body, signature)
-    except InvalidSignatureError:
-        messages = (
-            "Invalid signature. Please check your channel access token/channel secret."
-        )
-        logger.error(messages)
-        return HttpResponseBadRequest(messages)
-    return HttpResponse("OK")
+        signature = request.META['HTTP_X_LINE_SIGNATURE']
+        body = request.body.decode('utf-8')
+        try:
+            handler.handle(body, signature)
+        except InvalidSignatureError:
+            return HttpResponseBadRequest()
 
-
-@handler.add(event=MessageEvent, message=TextMessage)
-def handl_message(event: MessageEvent):
-        line_bot_api.reply_message(
-            reply_token=event.reply_token,
-            messages=TextSendMessage(text=event.message.text),
-        )
+        return HttpResponse()
+    else:
+        return HttpResponseBadRequest()
 
 def crawler():
     if 1:
@@ -69,3 +63,12 @@ def crawler():
     else:
         message = {"no"}
         return message
+
+
+@handler.add(MessageEvent, message=TextMessage)
+def message_text(event):
+    a = crawler()
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=a)
+    )
