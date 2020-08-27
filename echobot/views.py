@@ -25,9 +25,7 @@ def callback(request):
             events = parser.parse(body, signature)
         except InvalidSignatureError:
             return HttpResponseForbidden()
-        except LineBotApiError:
-            return HttpResponseBadRequest()
-
+        
         for event in events:
             if isinstance(event, MessageEvent):
                 line_bot_api.reply_message(
