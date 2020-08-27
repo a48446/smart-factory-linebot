@@ -13,7 +13,7 @@ parser = WebhookParser('57141ec8f7ba725d4fa3fa97a5bd5169')
 
 
 @csrf_exempt
-def callback(request: HttpRequest) -> HttpResponse:
+def callback(request):
     
     if request.method == "POST":
 
