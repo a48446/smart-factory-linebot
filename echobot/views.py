@@ -70,5 +70,5 @@ def message_text(event):
     a = crawler()
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=a)
+        TextSendMessage(text="hello")
     )
