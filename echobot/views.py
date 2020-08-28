@@ -30,7 +30,8 @@ def callback(request):
 
 @handler.add(event=MessageEvent, message=TextMessage)
 def handl_message(event):
-    outInfo = crawler()
+    outInfo = "汪汪"
+    # outInfo = crawler()
     message = TextSendMessage(text=outInfo)
     line_bot_api.reply_message(
         event.reply_token,
