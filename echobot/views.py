@@ -30,7 +30,7 @@ def callback(request):
 @handler.add(event=MessageEvent, message=TextMessage)
 def handl_message(event: MessageEvent,content):
     
-    reply = TextSendMessage(text=content)
+    reply = TextSendMessage(text='你好')
     line_bot_api.reply_message(
         reply_token=event.reply_token,
         messages=reply
@@ -59,6 +59,14 @@ def crawler():
         Sunset = driver.find_element_by_id('GT_Sunset').text
         driver.quit()
         content="\n"+"名間鄉天氣概況"+"\n"+"\n"+"現在溫度 : "+Temp+"°C"+"\n"+"體感溫度 : "+bodyTemp+"°C"+"\n"+"相對溼度 : "+RelativeHumidity+"%"+"\n"+"降雨量 : "+Rain+"mm"+"\n"+"日出時間 : "+Sunrise+"\n"+"日落時間 : "+Sunset
+        # content= {
+        #     "現在溫度":Temp,
+        #     "體感溫度":bodyTemp,
+        #     "相對溼度":RelativeHumidity,
+        #     "降雨量":Rain,
+        #     "日出時間":Sunrise,
+        #     "日落時間":Sunset
+        #         }
         # print(content)
         return content
     else:
