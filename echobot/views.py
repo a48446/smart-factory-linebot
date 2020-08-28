@@ -29,11 +29,11 @@ def callback(request):
 
 @handler.add(event=MessageEvent, message=TextMessage)
 def handl_message(event):
-    message = TextSendMessage(text="汪汪")
+    outInfo = crawler("content")
+    message = TextSendMessage(text=outInfo)
     line_bot_api.reply_message(
         event.reply_token,
         message)
-    
 def crawler(content):
     
     prefs = {  
