@@ -28,7 +28,7 @@ def callback(request):
         return HttpResponse("OK")
 
 @handler.add(event=MessageEvent, message=TextMessage)
-def handl_message(event: MessageEvent):
+def handl_message(event):
     outInfo = ''
     outInfo = crawler("content")
     if outInfo != '':
