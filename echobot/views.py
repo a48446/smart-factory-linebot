@@ -32,7 +32,7 @@ def handl_message(event):
     outInfo = ''
     outInfo = crawler("content")
     if outInfo != '':
-            message = TextSendMessage(text=outInfo)
+            message = TextSendMessage(text="汪汪")
             line_bot_api.reply_message(
                 event.reply_token,
                 message)
