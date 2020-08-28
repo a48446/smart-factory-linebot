@@ -38,12 +38,6 @@ def handl_message(event):
         message)
 
 def crawler(content):
-    prefs = {  
-        'profile.default_content_setting_values' :  {  
-            'notifications' : 2  
-                }  
-            }  
-    chrome_options.add_experimental_option('prefs',prefs)
     chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = os.getenv.get("GOOGLE_CHROME_BIN")
     chrome_options.add_argument("--headless")      #不開啟實體瀏覽器背景執行
