@@ -37,7 +37,7 @@ def handl_message(event):
         event.reply_token,
         message)
 
-def crawler():
+def crawler(content):
     prefs = {  
         'profile.default_content_setting_values' :  {  
             'notifications' : 2  
