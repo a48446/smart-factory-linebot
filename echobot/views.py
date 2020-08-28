@@ -1,5 +1,6 @@
 import os
 import requests
+import json
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
@@ -29,13 +30,13 @@ def callback(request):
 
 @handler.add(event=MessageEvent, message=TextMessage)
 def handl_message(event):
-    outInfo = crawler("content")
+    outInfo = json.dumps(crawler(), ensure_ascii=False)
     message = TextSendMessage(text=outInfo)
     line_bot_api.reply_message(
         event.reply_token,
         message)
-def crawler(content):
-    
+
+def crawler():
     prefs = {  
         'profile.default_content_setting_values' :  {  
             'notifications' : 2  
