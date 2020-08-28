@@ -68,6 +68,6 @@ def crawler():
         "日出時間":Sunrise,
         "日落時間":Sunset
     }
-    print(content)
+    # print(content)
     return content
     
