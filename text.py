@@ -16,7 +16,7 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-def crawler():
+def crawler(content):
     if 1:
         options = Options()
         prefs = {
@@ -47,7 +47,7 @@ def crawler():
 def handl_message():
     a = crawler()
     text = a
-    return text
+    return a
 
 
 b = handl_message()
