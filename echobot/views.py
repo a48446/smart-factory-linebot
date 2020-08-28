@@ -28,15 +28,12 @@ def callback(request):
         return HttpResponse("OK")
 
 @handler.add(event=MessageEvent, message=TextMessage)
-def handl_message(event:MessageEvent,content):
-    message = {
-      type: 'text',
-      text: content
-    } 
-    reply = TextSendMessage(text=message)
+def handl_message(event: MessageEvent,content):
+    
+    reply = TextSendMessage(text=content)
     line_bot_api.reply_message(
         reply_token=event.reply_token,
-        reply
+        messages=reply
     )
 
 def crawler():
