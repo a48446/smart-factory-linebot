@@ -50,7 +50,7 @@ def handl_message(event: MessageEvent):
     Sunset = driver.find_element_by_id('GT_Sunset').text
     driver.quit()
     content="\n"+"名間鄉天氣概況"+"\n"+"\n"+"現在溫度 : "+Temp+"°C"+"\n"+"體感溫度 : "+bodyTemp+"°C"+"\n"+"相對溼度 : "+RelativeHumidity+"%"+"\n"+"降雨量 : "+Rain+"mm"+"\n"+"日出時間 : "+Sunrise+"\n"+"日落時間 : "+Sunset
-    reply = TextSendMessage(text='你好')
+    reply = TextSendMessage(text=content)
     line_bot_api.reply_message(
         reply_token=event.reply_token,
         messages=reply
