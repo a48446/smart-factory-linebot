@@ -28,9 +28,9 @@ def callback(request):
         return HttpResponse("OK")
 
 @handler.add(event=MessageEvent, message=TextMessage)
-def handl_message(event: MessageEvent,content):
-    
-    reply = TextSendMessage(text='你好')
+def handl_message(event: MessageEvent):
+    a = crawler()
+    reply = TextSendMessage(text=a)
     line_bot_api.reply_message(
         reply_token=event.reply_token,
         messages=reply

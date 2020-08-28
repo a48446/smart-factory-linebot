@@ -47,7 +47,7 @@ def crawler():
 def handl_message():
     a = crawler()
     text = a
-    return a
+    return text
 
 
 b = handl_message()
