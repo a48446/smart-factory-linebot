@@ -1,9 +1,4 @@
 
-
-
-
-
-
 # @handler.add(MessageEvent, message=TextMessage)
 # def message_text(event):
 #     a = crawler()
@@ -15,6 +10,7 @@ import os
 import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+import json
 
 def crawler(content):
 
@@ -52,7 +48,7 @@ def crawler(content):
   
 
 def handl_message():
-    a = crawler("content")
+    a = json.dumps(crawler("content"))
     return a
 
 
