@@ -37,15 +37,12 @@ def handl_message(event: MessageEvent):
 
 def crawler():
     if 1:
-        options = Options()
-        prefs = {
-            'profile.default_content_setting_values' :
-                {
-                'notifications' : 2
-                }
-        }
-        options.add_experimental_option('prefs',prefs)
-        options.add_argument("--incognito")           #開啟無痕模式
+        prefs = {  
+            'profile.default_content_setting_values' :  {  
+                'notifications' : 2  
+                     }  
+                }  
+        chrome_options.add_experimental_option('prefs',prefs)
         chrome_options = webdriver.ChromeOptions()
         chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
         chrome_options.add_argument("--headless")      #不開啟實體瀏覽器背景執行
