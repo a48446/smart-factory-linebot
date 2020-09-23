@@ -34,11 +34,11 @@ class Featuresmodel(Message):
                         text='溫度',
                         data='溫度'
                     ),
-                    PostbackTemplateAction(
-                        label='控制',
-                        text='控制',
-                        data='控制'
-                    ),
+                    # PostbackTemplateAction(
+                    #     label='控制',
+                    #     text='控制',
+                    #     data='控制'
+                    # ),
                     PostbackTemplateAction(
                         label='機房資訊',
                         text='機房資訊',
