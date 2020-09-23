@@ -46,7 +46,7 @@ def crawler(content):
     chrome_options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
     driver.get("https://www.cwb.gov.tw/V8/C/W/Town/Town.html?TID=6600500") #南投名間鄉
-    Temp = driver.find_element_by_id('tem-C no-unit is-active').text #現在溫度
+    Temp = driver.find_element_by_id('GT_C_T').text #現在溫度
     bodyTemp = driver.find_element_by_id('GT_C_AT').text #體感溫度
     RelativeHumidity = driver.find_element_by_id('GT_RH').text #相對溼度
     Rain = driver.find_element_by_id('GT_Rain').text #降雨量
