@@ -49,9 +49,9 @@ class Featuresmodel(Message):
                 text='請選擇想要使用的功能',
                 actions=[
                     PostbackTemplateAction(
-                        label='機房資訊',
-                        text='機房資訊',
-                        data='機房資訊'
+                        label='設定機房資訊',
+                        text='設定機房資訊',
+                        data='設定機房資訊'
                     ),
                     PostbackTemplateAction(
                         label='查看設定結果',
