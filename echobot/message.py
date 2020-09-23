@@ -39,11 +39,11 @@ class Featuresmodel(Message):
                     #     text='控制',
                     #     data='控制'
                     # ),
-                    PostbackTemplateAction(
-                        label='機房資訊',
-                        text='機房資訊',
-                        data='機房資訊'
-                    ),
+                    # PostbackTemplateAction(
+                    #     label='機房資訊',
+                    #     text='機房資訊',
+                    #     data='機房資訊'
+                    # ),
                     PostbackTemplateAction(
                         label='查看設定結果',
                         text='查看設定結果',
