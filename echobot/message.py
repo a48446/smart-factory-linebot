@@ -38,32 +38,32 @@ class Featuresmodel(Message):
                         label='控制',
                         text='控制',
                         data='控制'
-                    ),
-                    PostbackTemplateAction(
-                        label='設定機房資訊',
-                        text='設定機房資訊',
-                        data='設定機房資訊'
-                    ),
-                    PostbackTemplateAction(
-                        label='查看設定結果',
-                        text='查看設定結果',
-                        data='查看設定結果'
-                    ),
-                    PostbackTemplateAction(
-                        label='機房資訊',
-                        text='機房資訊',
-                        data='機房資訊'
-                    ),
-                    PostbackTemplateAction(
-                        label='每日通報資訊',
-                        text='每日通報資訊',
-                        data='每日通報資訊'
-                    ),
-                    PostbackTemplateAction(
-                        label='機房服務列表',
-                        text='機房服務列表',
-                        data='機房服務列表'
                     )
+                    # PostbackTemplateAction(
+                    #     label='設定機房資訊',
+                    #     text='設定機房資訊',
+                    #     data='設定機房資訊'
+                    # ),
+                    # PostbackTemplateAction(
+                    #     label='查看設定結果',
+                    #     text='查看設定結果',
+                    #     data='查看設定結果'
+                    # ),
+                    # PostbackTemplateAction(
+                    #     label='機房資訊',
+                    #     text='機房資訊',
+                    #     data='機房資訊'
+                    # ),
+                    # PostbackTemplateAction(
+                    #     label='每日通報資訊',
+                    #     text='每日通報資訊',
+                    #     data='每日通報資訊'
+                    # ),
+                    # PostbackTemplateAction(
+                    #     label='機房服務列表',
+                    #     text='機房服務列表',
+                    #     data='機房服務列表'
+                    # )
                 ]
             )
         )

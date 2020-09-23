@@ -88,16 +88,16 @@ def callback(request):
                         TextSendMessage(text=message)
                     )
 
-                # 控制 (需修改)
-                elif event.postback.data[0] == "控" and event.postback.data[1] == '制':
-                    message=''
-                    for controldata in controldata.find():
-                        message = "排風風扇狀態:"+ str(controldata["outputFan"])+"\n"+"進風風扇狀態:" + str(controldata["inputFan"])+"\n""加濕器狀態:" + str(controldata["humidity"])
+                # # 控制 (需修改)
+                # elif event.postback.data[0] == "控" and event.postback.data[1] == '制':
+                #     message=''
+                #     for controldata in controldata.find():
+                #         message = "排風風扇狀態:"+ str(controldata["outputFan"])+"\n"+"進風風扇狀態:" + str(controldata["inputFan"])+"\n""加濕器狀態:" + str(controldata["humidity"])
 
-                    line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text=message)
-                    )
+                #     line_bot_api.reply_message(
+                #         event.reply_token,
+                #         TextSendMessage(text=message)
+                #     )
 
                 # # 設定機房資訊
                 # elif event.postback.data[0] == "設" and event.postback.data[1] == '定': 
