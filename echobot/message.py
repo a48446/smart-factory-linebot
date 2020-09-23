@@ -42,7 +42,6 @@ class Featuresmodel(Message):
                 ]
             )
         )
-
         body2 = TemplateSendMessage(
             alt_text='Buttons template',
             template=ButtonsTemplate(
@@ -77,6 +76,20 @@ class Featuresmodel(Message):
                 ]
             )
         )
-        return body , body2
+        body3 = TemplateSendMessage(
+            alt_text='Buttons template',
+            template=ButtonsTemplate(
+                title='功能列表',
+                text='請選擇想要使用的功能',
+                actions=[
+                    PostbackTemplateAction(
+                        label='機房服務列表',
+                        text='機房服務列表',
+                        data='機房服務列表'
+                    )
+                ]
+            )
+        )
+        return body , body2 , body3
 
 
