@@ -38,7 +38,7 @@ class Featuresmodel(Message):
                         label='控制',
                         text='控制',
                         data='控制'
-                    )
+                    ),
                     PostbackTemplateAction(
                         label='設定機房資訊',
                         text='設定機房資訊',
