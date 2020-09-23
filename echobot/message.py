@@ -46,8 +46,6 @@ class Featuresmodel(Message):
         body2 = TemplateSendMessage(
             alt_text='Buttons template',
             template=ButtonsTemplate(
-                title='功能列表',
-                text='請選擇想要使用的功能',
                 actions=[
                     PostbackTemplateAction(
                         label='機房資訊',
