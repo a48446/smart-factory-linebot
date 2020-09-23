@@ -121,97 +121,97 @@ def callback(request):
                 #         TextSendMessage(text=message)
                 #     )
 
-                # 機房資訊
-                elif event.postback.data[0] == "機" and event.postback.data[2] == '資': 
-                    message = ""
-                    for computerdata in RoomInformationdata.find():
-                        message ="VCPU數量(顆):"+ str(computerdata["vcpu"])+"\n"+"RAM數量(GB):"+ str(computerdata["ram"])+"\n"+"機房儲存空間(TB):"+ str(computerdata["disk"])+"\n"+"機房Switch數量(台):"+ str(computerdata["switch"])+"\n"+"機房SDN Switch 數量(台):"+ str(computerdata["sdnSwitch"])+"\n"+"機房一般主機數量(台):"+ str(computerdata["pc"])+"\n"+"機房伺服器數量(台):"+ str(computerdata["server"])
+                # # 機房資訊
+                # elif event.postback.data[0] == "機" and event.postback.data[2] == '資': 
+                #     message = ""
+                #     for computerdata in RoomInformationdata.find():
+                #         message ="VCPU數量(顆):"+ str(computerdata["vcpu"])+"\n"+"RAM數量(GB):"+ str(computerdata["ram"])+"\n"+"機房儲存空間(TB):"+ str(computerdata["disk"])+"\n"+"機房Switch數量(台):"+ str(computerdata["switch"])+"\n"+"機房SDN Switch 數量(台):"+ str(computerdata["sdnSwitch"])+"\n"+"機房一般主機數量(台):"+ str(computerdata["pc"])+"\n"+"機房伺服器數量(台):"+ str(computerdata["server"])
       
-                    line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text=message)
-                    )
+                #     line_bot_api.reply_message(
+                #         event.reply_token,
+                #         TextSendMessage(text=message)
+                #     )
 
-                # 每日通報資訊
-                elif event.postback.data[0] == "每" and event.postback.data[1] == '日': 
-                    message = ''
-                    url = "https://www.cwb.gov.tw/V8/C/W/Town/MOD/Week/6600500_Week_PC.html?T=2020091716-4"
-                    html = requests.get(url)
-                    s = BeautifulSoup(html.text, 'html.parser')
-                    for Noticedata in RoomPowerdata.find():
-                        timerange = str(Noticedata["cameraStartTime"])[0:4] + "~" + str(Noticedata["cameraEndTime"])[0:4]
-                        weatherword = s.find(class_="signal").find('img').get('title')
-                        rain = s.find(headers="day1 rainful d1d").text
-                        maxa = s.find(class_="tem-C is-active").text[0:3]
-                        maxb = s.find(class_="tem-C is-active").text[5:7]
-                        maxtemp = ""
-                        mina = s.find(headers="day1 lo-temp d1n").text[0:3]
-                        minb = s.find(headers="day1 lo-temp d1n").text[5:7]
-                        mintemp = ''
-                        if maxa > maxb :
-                            maxtemp = maxa
-                        else:
-                            maxtemp = maxb
-                        if mina > minb :
-                            mintemp = minb
-                        else:
-                            mintemp = mina
+                # # 每日通報資訊
+                # elif event.postback.data[0] == "每" and event.postback.data[1] == '日': 
+                #     message = ''
+                #     url = "https://www.cwb.gov.tw/V8/C/W/Town/MOD/Week/6600500_Week_PC.html?T=2020091716-4"
+                #     html = requests.get(url)
+                #     s = BeautifulSoup(html.text, 'html.parser')
+                #     for Noticedata in RoomPowerdata.find():
+                #         timerange = str(Noticedata["cameraStartTime"])[0:4] + "~" + str(Noticedata["cameraEndTime"])[0:4]
+                #         weatherword = s.find(class_="signal").find('img').get('title')
+                #         rain = s.find(headers="day1 rainful d1d").text
+                #         maxa = s.find(class_="tem-C is-active").text[0:3]
+                #         maxb = s.find(class_="tem-C is-active").text[5:7]
+                #         maxtemp = ""
+                #         mina = s.find(headers="day1 lo-temp d1n").text[0:3]
+                #         minb = s.find(headers="day1 lo-temp d1n").text[5:7]
+                #         mintemp = ''
+                #         if maxa > maxb :
+                #             maxtemp = maxa
+                #         else:
+                #             maxtemp = maxb
+                #         if mina > minb :
+                #             mintemp = minb
+                #         else:
+                #             mintemp = mina
 
-                        message ="昨日冷氣消耗"+ str(Noticedata["airConditioning"])+"度"+"\n"+"昨日ups_A消耗:" + str(Noticedata["upsA"])+"度"+"\n"+"昨日ups_B消耗:" + str(Noticedata["upsB"])+"度"+"\n"+"昨日水塔馬達消耗:"+ str(Noticedata["waterTank"])+"度"+"\n"+"前天電錶數值:"+ str(Noticedata["cameraPowerBeforeDay2"])+"度"+"\n"+"昨日電錶數值:"+ str(Noticedata["cameraPowerBeforeDay1"])+"度"+"\n"+"昨日電錶數值:"+ str(Noticedata["cameraPower"])+"度"+"\n"+"昨日電錶消耗:"+ str(Noticedata["cameraPowerConsumption"])+"度"+"\n" + timerange + "\n" + "天氣:" + weatherword + "\n" +"最低溫度:" + mintemp+ "°C" + "\n" + "最高溫度:" + maxtemp+ "°C" +"\n" + "降雨機率:" + rain
+                #         message ="昨日冷氣消耗"+ str(Noticedata["airConditioning"])+"度"+"\n"+"昨日ups_A消耗:" + str(Noticedata["upsA"])+"度"+"\n"+"昨日ups_B消耗:" + str(Noticedata["upsB"])+"度"+"\n"+"昨日水塔馬達消耗:"+ str(Noticedata["waterTank"])+"度"+"\n"+"前天電錶數值:"+ str(Noticedata["cameraPowerBeforeDay2"])+"度"+"\n"+"昨日電錶數值:"+ str(Noticedata["cameraPowerBeforeDay1"])+"度"+"\n"+"昨日電錶數值:"+ str(Noticedata["cameraPower"])+"度"+"\n"+"昨日電錶消耗:"+ str(Noticedata["cameraPowerConsumption"])+"度"+"\n" + timerange + "\n" + "天氣:" + weatherword + "\n" +"最低溫度:" + mintemp+ "°C" + "\n" + "最高溫度:" + maxtemp+ "°C" +"\n" + "降雨機率:" + rain
 
-                    line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text=message)
-                    )
+                #     line_bot_api.reply_message(
+                #         event.reply_token,
+                #         TextSendMessage(text=message)
+                #     )
 
-                # 機房服務列表
-                elif event.postback.data[2] == "服" and event.postback.data[3] == '務': 
-                    urldata = []
-                    namedata = []
-                    accpasdata= []
-                    statusdata = []
-                    serviceList = ""
-                    for serviceList in serviceListdata.find():
-                        name = serviceList["name"]
-                        url = serviceList["url"]
-                        accpas = serviceList["notice"]
-                        status = serviceList["enabled"]
-                        namedata.append(name)
-                        urldata.append(url)
-                        accpasdata.append(accpas)
-                        statusdata.append(status)
+                # # 機房服務列表
+                # elif event.postback.data[2] == "服" and event.postback.data[3] == '務': 
+                #     urldata = []
+                #     namedata = []
+                #     accpasdata= []
+                #     statusdata = []
+                #     serviceList = ""
+                #     for serviceList in serviceListdata.find():
+                #         name = serviceList["name"]
+                #         url = serviceList["url"]
+                #         accpas = serviceList["notice"]
+                #         status = serviceList["enabled"]
+                #         namedata.append(name)
+                #         urldata.append(url)
+                #         accpasdata.append(accpas)
+                #         statusdata.append(status)
 
-                    #ICINGA
-                    ICINGA ="服務名稱"+ str(namedata[0])+"\n"+"服務網址"+ str(urldata[0])+"\n"+"服務啟用狀態:" + str(statusdata[0])+"\n"+"備註:"+ str(accpasdata[0])
-                    #Kubernetes Dashboard
-                    Kubernetes="服務名稱"+ str(namedata[1])+"\n"+"服務網址"+ str(urldata[1])+"\n"+"服務啟用狀態:" + str(statusdata[1])
-                    #Ceph
-                    Ceph="服務名稱"+ str(namedata[2])+"\n"+"服務網址"+ str(urldata[2])+"\n"+"服務啟用狀態:" + str(statusdata[2])
-                    #機房環控分析系統
-                    room="服務名稱"+ str(namedata[3])+"\n"+"服務網址"+ str(urldata[3])+"\n"+"服務啟用狀態:" + str(statusdata[3])
-                    #Elastsearch Dashboard
-                    Elastsearch="服務名稱"+ str(namedata[4])+"\n"+"服務網址"+ str(urldata[4])+"\n"+"服務啟用狀態:" + str(statusdata[4])
-                    #CORD
-                    CORD="服務名稱"+ str(namedata[5])+"\n"+"服務網址"+ str(urldata[5])+"\n"+"服務啟用狀態:" + str(statusdata[5])
-                    #smart-data-center
-                    smart="服務名稱"+ str(namedata[6])+"\n"+"服務網址"+ str(urldata[6])+"\n"+"服務啟用狀態:" + str(statusdata[6])
-                    #S3 Portal
-                    s3="服務名稱"+ str(namedata[7])+"\n"+"服務網址"+ str(urldata[7])+"\n"+"服務啟用狀態:" + str(statusdata[7])
-                    #Grafana-ups_route_current
-                    Grafana="服務名稱"+ str(namedata[8])+"\n"+"服務網址"+ str(urldata[8])+"\n"+"服務啟用狀態:" + str(statusdata[8])
-                    #Lora vehicle platform
-                    Lora="服務名稱"+ str(namedata[9])+"\n"+"服務網址"+ str(urldata[9])+"\n"+"服務啟用狀態:" + str(statusdata[9])
-                    #Private Ethereum
-                    Private="服務名稱"+ str(namedata[10])+"\n"+"服務網址"+ str(urldata[10])+"\n"+"服務啟用狀態:" + str(statusdata[10])
-                    #Tensorboard
-                    Tensorboard="服務名稱"+ str(namedata[11])+"\n"+"服務網址"+ str(urldata[11])+"\n"+"服務啟用狀態:" + str(statusdata[11])
+                #     #ICINGA
+                #     ICINGA ="服務名稱"+ str(namedata[0])+"\n"+"服務網址"+ str(urldata[0])+"\n"+"服務啟用狀態:" + str(statusdata[0])+"\n"+"備註:"+ str(accpasdata[0])
+                #     #Kubernetes Dashboard
+                #     Kubernetes="服務名稱"+ str(namedata[1])+"\n"+"服務網址"+ str(urldata[1])+"\n"+"服務啟用狀態:" + str(statusdata[1])
+                #     #Ceph
+                #     Ceph="服務名稱"+ str(namedata[2])+"\n"+"服務網址"+ str(urldata[2])+"\n"+"服務啟用狀態:" + str(statusdata[2])
+                #     #機房環控分析系統
+                #     room="服務名稱"+ str(namedata[3])+"\n"+"服務網址"+ str(urldata[3])+"\n"+"服務啟用狀態:" + str(statusdata[3])
+                #     #Elastsearch Dashboard
+                #     Elastsearch="服務名稱"+ str(namedata[4])+"\n"+"服務網址"+ str(urldata[4])+"\n"+"服務啟用狀態:" + str(statusdata[4])
+                #     #CORD
+                #     CORD="服務名稱"+ str(namedata[5])+"\n"+"服務網址"+ str(urldata[5])+"\n"+"服務啟用狀態:" + str(statusdata[5])
+                #     #smart-data-center
+                #     smart="服務名稱"+ str(namedata[6])+"\n"+"服務網址"+ str(urldata[6])+"\n"+"服務啟用狀態:" + str(statusdata[6])
+                #     #S3 Portal
+                #     s3="服務名稱"+ str(namedata[7])+"\n"+"服務網址"+ str(urldata[7])+"\n"+"服務啟用狀態:" + str(statusdata[7])
+                #     #Grafana-ups_route_current
+                #     Grafana="服務名稱"+ str(namedata[8])+"\n"+"服務網址"+ str(urldata[8])+"\n"+"服務啟用狀態:" + str(statusdata[8])
+                #     #Lora vehicle platform
+                #     Lora="服務名稱"+ str(namedata[9])+"\n"+"服務網址"+ str(urldata[9])+"\n"+"服務啟用狀態:" + str(statusdata[9])
+                #     #Private Ethereum
+                #     Private="服務名稱"+ str(namedata[10])+"\n"+"服務網址"+ str(urldata[10])+"\n"+"服務啟用狀態:" + str(statusdata[10])
+                #     #Tensorboard
+                #     Tensorboard="服務名稱"+ str(namedata[11])+"\n"+"服務網址"+ str(urldata[11])+"\n"+"服務啟用狀態:" + str(statusdata[11])
 
-                    message = ICINGA+ "\n" + "\n"+ Kubernetes + "\n" +"\n"+ Ceph + "\n" +"\n"+ room + "\n" +"\n"+Elastsearch+ "\n" +"\n"+CORD+"\n"+ "\n"+smart+"\n"+ "\n"+s3+"\n"+ "\n"+Grafana+"\n"+ "\n"+Lora+"\n"+ "\n"+Private+"\n"+ "\n"+Tensorboard+"\n"+ "\n"
+                #     message = ICINGA+ "\n" + "\n"+ Kubernetes + "\n" +"\n"+ Ceph + "\n" +"\n"+ room + "\n" +"\n"+Elastsearch+ "\n" +"\n"+CORD+"\n"+ "\n"+smart+"\n"+ "\n"+s3+"\n"+ "\n"+Grafana+"\n"+ "\n"+Lora+"\n"+ "\n"+Private+"\n"+ "\n"+Tensorboard+"\n"+ "\n"
 
-                    line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text=message)
-                    )
+                #     line_bot_api.reply_message(
+                #         event.reply_token,
+                #         TextSendMessage(text=message)
+                #     )
 
                 
         return HttpResponse()
