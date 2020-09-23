@@ -53,10 +53,10 @@ def callback(request):
                         Featuresmodel().content()
                     )
 
-            elif isinstance(event, MessageEvent):  # 如果有訊息回傳
+            elif isinstance(event, PostbackEvent):  # 如果有訊息回傳
 
                 # 電流
-                if event.message.data[0] == "電" and event.message.data[1] == '流':  # 如果回傳值為「電流」
+                if event.postback.data[0] == "電" and event.postback.data[1] == '流':  # 如果回傳值為「電流」
                     message = ''
                     for roomdata in RoomPowerdata.find():
                         message ="冷氣目前電流:"+ str(roomdata["airConditioning"])+"(A)"+"\n"+"最後更新時間:" + str(roomdata["time"])+"\n"+"\n"+"ups_A目前電流:" + str(roomdata["upsA"])+"(A)"+"\n"+"ups_B目前電流:"+ str(roomdata["upsB"])+"(A)"+"\n"+"最後更新時間:"+ str(roomdata["time"])
