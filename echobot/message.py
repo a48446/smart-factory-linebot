@@ -54,9 +54,9 @@ class Featuresmodel(Message):
                         data='設定機房資訊'
                     ),
                     PostbackTemplateAction(
-                        label='查看設定結果',
-                        text='查看設定結果',
-                        data='查看設定結果'
+                        label='查看機房資訊',
+                        text='查看機房資訊',
+                        data='查看機房資訊'
                     ),
                     PostbackTemplateAction(
                         label='機房資訊',
