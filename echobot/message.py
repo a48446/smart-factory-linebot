@@ -57,7 +57,7 @@ class Featuresmodel(Message):
                         label='查看機房資訊',
                         text='查看機房資訊',
                         data='查看機房資訊',
-                        color='#000000'
+                        color='#054E9F'
                     ),
                     PostbackTemplateAction(
                         label='機房資訊',
