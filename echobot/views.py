@@ -47,7 +47,7 @@ def callback(request):
             if isinstance(event, MessageEvent):  # 如果有訊息事件
 
                 if event.message.text == "功能列表":
-
+            
                     line_bot_api.reply_message(  # 回復「功能列表」按鈕樣板訊息
                         event.reply_token,
                         Featuresmodel().content()
