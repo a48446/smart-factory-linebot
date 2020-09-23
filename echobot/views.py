@@ -118,7 +118,9 @@ def callback(request):
     
                     line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text=message)
+                        TextSendMessage(text=message,
+                        color= "#0066cc"
+                        )
                     )
 
                 # 機房資訊
