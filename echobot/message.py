@@ -105,199 +105,199 @@ class Message(ABC):
 # 「功能列表」按鈕樣板訊息
 class Featuresmodel():
     def content(self):
-        body_message = FlexSendMessage(
-            alt_text='功能列表',
+        flex_message = FlexSendMessage(
+            alt_text='hello',
             contents={
-                "type": "bubble",
-                "size": "mega",
-                "header": {
+            "type": "bubble",
+            "size": "mega",
+            "header": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
                     "type": "box",
                     "layout": "vertical",
                     "contents": [
                     {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                        {
-                            "type": "text",
-                            "text": "功能列表",
-                            "color": "#ffffff",
-                            "size": "xl",
-                            "flex": 4,
-                            "weight": "regular",
-                            "margin": "xs"
-                        }
-                        ]
+                        "type": "text",
+                        "text": "功能列表",
+                        "color": "#ffffff",
+                        "size": "xl",
+                        "flex": 4,
+                        "weight": "regular",
+                        "margin": "xs"
+                    }
+                    ]
+                }
+                ],
+                "paddingAll": "20px",
+                "backgroundColor": "#0367D3",
+                "spacing": "md",
+                "height": "80px",
+                "paddingTop": "22px"
+            },
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                        "type": "postback",
+                        "label": "電流",
+                        "data": "電流",
+                        "displayText": "電流"
+                        },
+                        "color": "#ffffff"
                     }
                     ],
-                    "paddingAll": "20px",
-                    "backgroundColor": "#0367D3",
-                    "spacing": "md",
-                    "height": "80px",
-                    "paddingTop": "22px"
+                    "backgroundColor": "#0367D3"
                 },
-                "body": {
+                {
                     "type": "box",
                     "layout": "vertical",
                     "contents": [
                     {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                        {
-                            "type": "button",
-                            "action": {
-                            "type": "postback",
-                            "label": "電流",
-                            "data": "電流",
-                            "displayText": "電流"
-                            },
-                            "color": "#ffffff"
-                        }
-                        ],
-                        "backgroundColor": "#0367D3"
-                    },
-                    {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                        {
-                            "type": "button",
-                            "action": {
-                            "type": "postback",
-                            "label": "濕度",
-                            "data": "濕度",
-                            "displayText": "濕度"
-                            },
-                            "color": "#ffffff"
-                        }
-                        ],
-                        "backgroundColor": "#0367D3"
-                    },
-                    {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                        {
-                            "type": "button",
-                            "action": {
-                            "type": "postback",
-                            "label": "溫度",
-                            "data": "溫度",
-                            "displayText": "溫度"
-                            },
-                            "color": "#ffffff"
-                        }
-                        ],
-                        "backgroundColor": "#0367D3"
-                    },
-                    {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                        {
-                            "type": "button",
-                            "action": {
-                            "type": "message",
-                            "label": "控制",
-                            "text": "控制"
-                            },
-                            "color": "#ffffff"
-                        }
-                        ],
-                        "backgroundColor": "#0367D3"
-                    },
-                    {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                        {
-                            "type": "button",
-                            "action": {
-                            "type": "postback",
-                            "label": "設定機房資訊",
-                            "data": "設定機房資訊",
-                            "displayText": "設定機房資訊"
-                            },
-                            "color": "#ffffff"
-                        }
-                        ],
-                        "backgroundColor": "#0367D3"
-                    },
-                    {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                        {
-                            "type": "button",
-                            "action": {
-                            "type": "postback",
-                            "label": "查看機房資訊",
-                            "data": "查看機房資訊",
-                            "displayText": "查看機房資訊"
-                            },
-                            "color": "#ffffff"
-                        }
-                        ],
-                        "backgroundColor": "#0367D3"
-                    },
-                    {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                        {
-                            "type": "button",
-                            "action": {
-                            "type": "postback",
-                            "label": "機房資訊",
-                            "data": "機房資訊",
-                            "displayText": "機房資訊"
-                            },
-                            "color": "#ffffff"
-                        }
-                        ],
-                        "backgroundColor": "#0367D3"
-                    },
-                    {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                        {
-                            "type": "button",
-                            "action": {
-                            "type": "postback",
-                            "label": "每日通報資訊",
-                            "data": "每日通報資訊",
-                            "displayText": "每日通報資訊"
-                            },
-                            "color": "#ffffff"
-                        }
-                        ],
-                        "backgroundColor": "#0367D3"
-                    },
-                    {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                        {
-                            "type": "button",
-                            "action": {
-                            "type": "postback",
-                            "label": "機房服務列表",
-                            "data": "機房服務列表",
-                            "displayText": "機房服務列表"
-                            },
-                            "color": "#ffffff"
-                        }
-                        ],
-                        "backgroundColor": "#0367D3"
+                        "type": "button",
+                        "action": {
+                        "type": "postback",
+                        "label": "濕度",
+                        "data": "濕度",
+                        "displayText": "濕度"
+                        },
+                        "color": "#ffffff"
                     }
                     ],
-                    "spacing": "xs"
+                    "backgroundColor": "#0367D3"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                        "type": "postback",
+                        "label": "溫度",
+                        "data": "溫度",
+                        "displayText": "溫度"
+                        },
+                        "color": "#ffffff"
+                    }
+                    ],
+                    "backgroundColor": "#0367D3"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                        "type": "message",
+                        "label": "控制",
+                        "text": "控制"
+                        },
+                        "color": "#ffffff"
+                    }
+                    ],
+                    "backgroundColor": "#0367D3"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                        "type": "postback",
+                        "label": "設定機房資訊",
+                        "data": "設定機房資訊",
+                        "displayText": "設定機房資訊"
+                        },
+                        "color": "#ffffff"
+                    }
+                    ],
+                    "backgroundColor": "#0367D3"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                        "type": "postback",
+                        "label": "查看機房資訊",
+                        "data": "查看機房資訊",
+                        "displayText": "查看機房資訊"
+                        },
+                        "color": "#ffffff"
+                    }
+                    ],
+                    "backgroundColor": "#0367D3"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                        "type": "postback",
+                        "label": "機房資訊",
+                        "data": "機房資訊",
+                        "displayText": "機房資訊"
+                        },
+                        "color": "#ffffff"
+                    }
+                    ],
+                    "backgroundColor": "#0367D3"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                        "type": "postback",
+                        "label": "每日通報資訊",
+                        "data": "每日通報資訊",
+                        "displayText": "每日通報資訊"
+                        },
+                        "color": "#ffffff"
+                    }
+                    ],
+                    "backgroundColor": "#0367D3"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                        "type": "postback",
+                        "label": "機房服務列表",
+                        "data": "機房服務列表",
+                        "displayText": "機房服務列表"
+                        },
+                        "color": "#ffffff"
+                    }
+                    ],
+                    "backgroundColor": "#0367D3"
                 }
-                }
-            )
-        return body_message
+                ],
+                "spacing": "xs"
+            }
+            }
+        )
+        return flex_message
 
 # 按鈕回傳值
 class returnvalue():

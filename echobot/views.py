@@ -37,12 +37,12 @@ def callback(request):
                         event.reply_token,
                         Featuresmodel().content()
                     )
-                # if event.message.text == "控制":
+                if event.message.text == "控制":
                 
-                #     line_bot_api.reply_message(  # 回復「控制」按鈕輪播訊息
-                #         event.reply_token,
-                #         textmodel().returna()
-                #     )
+                    line_bot_api.reply_message(  # 回復「控制」按鈕輪播訊息
+                        event.reply_token,
+                        textmodel().returna()
+                    )
 
             elif isinstance(event, PostbackEvent):  # 如果有訊息回傳
                 # 電流
