@@ -37,9 +37,14 @@ def callback(request):
                         event.reply_token,
                         Featuresmodel().content()
                     )
+                if event.message.text == "控制":
+                
+                    line_bot_api.reply_message(  # 回復「功能列表」按鈕樣板訊息
+                        event.reply_token,
+                        controltable().text()
+                    )
 
-            elif isinstance(event, PostbackEvent):  # 如果有訊息回傳
-                mtext = event.message.text
+            elif isinstance(event, PostbackEvent,MessageEvent):  # 如果有訊息回傳
                 # 電流
                 if event.postback.data[0] == "電" and event.postback.data[1] == '流':  # 如果回傳值為「電流」
 
