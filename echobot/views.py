@@ -69,7 +69,7 @@ def callback(request):
                     
                     line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text=controltable().data())
+                        TextSendMessage(text=controltable().content())
                     )
 
                 # 設定機房資訊

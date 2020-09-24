@@ -226,7 +226,7 @@ class returnvalue():
         return message
 
 class controltable():
-    def data(self):
+    def content(self):
         body = TemplateSendMessage(
             alt_text='Carousel template',
             template=CarouselTemplate(
@@ -240,46 +240,15 @@ class controltable():
                             label='postback1',
                             text='postback text1',
                             data='action=buy&itemid=1'
-                        ),
+                                    ),
                         MessageTemplateAction(
                             label='message1',
                             text='message text1'
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url='https://i.imgur.com/icAeax3.png',
-                    title='進風風扇',
-                    text='true',
-                    actions=[
-                        PostbackTemplateAction(
-                            label='postback2',
-                            text='postback text2',
-                            data='action=buy&itemid=2'
-                        ),
-                        MessageTemplateAction(
-                            label='message2',
-                            text='message text2'
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url='https://i.imgur.com/0GJsShU.jpg',
-                    title='加溼器',
-                    text='true',
-                    actions=[
-                        PostbackTemplateAction(
-                            label='postback3',
-                            text='postback text3',
-                            data='action=buy&itemid=3'
-                        ),
-                        MessageTemplateAction(
-                            label='message3',
-                            text='message text3'
-                        )
-                    ]
+                                    )
+                                ]
+                             )
+                        ]
+                    )
                 )
-            ]
-        )
-        )
+        
         return body
