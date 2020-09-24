@@ -12,7 +12,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
-from .message import Featuresmodel
+from .message import Featuresmodel , returnvalue
 
 line_bot_api = LineBotApi('q7TWa/81a0nmW9GnqF6+u8qaFoMbi6q3Dq5VK2QM7FV8UIx3nQk5+luk5GpASk/bm5qtAmimAyA2/Ifdg6a0hH3dwMdfdAoRiGE8TF/IiRXriLsK7j9FDHlQUC34zr7EXiktLqyT5btGhtCTJXbTZQdB04t89/1O/w1cDnyilFU=')
 parser = WebhookParser("57141ec8f7ba725d4fa3fa97a5bd5169")
@@ -166,48 +166,7 @@ def callback(request):
 
                 # 機房服務列表
                 elif event.postback.data[2] == "服" and event.postback.data[3] == '務': 
-                    urldata = []
-                    namedata = []
-                    accpasdata= []
-                    statusdata = []
-                    serviceList = ""
-                    for serviceList in serviceListdata.find():
-                        name = serviceList["name"]
-                        url = serviceList["url"]
-                        accpas = serviceList["notice"]
-                        status = serviceList["enabled"]
-                        namedata.append(name)
-                        urldata.append(url)
-                        accpasdata.append(accpas)
-                        statusdata.append(status)
-
-                    #ICINGA
-                    ICINGA ="服務名稱"+ str(namedata[0])+"\n"+"服務網址"+ str(urldata[0])+"\n"+"服務啟用狀態:" + str(statusdata[0])+"\n"+"備註:"+ str(accpasdata[0])
-                    #Kubernetes Dashboard
-                    Kubernetes="服務名稱"+ str(namedata[1])+"\n"+"服務網址"+ str(urldata[1])+"\n"+"服務啟用狀態:" + str(statusdata[1])
-                    #Ceph
-                    Ceph="服務名稱"+ str(namedata[2])+"\n"+"服務網址"+ str(urldata[2])+"\n"+"服務啟用狀態:" + str(statusdata[2])
-                    #機房環控分析系統
-                    room="服務名稱"+ str(namedata[3])+"\n"+"服務網址"+ str(urldata[3])+"\n"+"服務啟用狀態:" + str(statusdata[3])
-                    #Elastsearch Dashboard
-                    Elastsearch="服務名稱"+ str(namedata[4])+"\n"+"服務網址"+ str(urldata[4])+"\n"+"服務啟用狀態:" + str(statusdata[4])
-                    #CORD
-                    CORD="服務名稱"+ str(namedata[5])+"\n"+"服務網址"+ str(urldata[5])+"\n"+"服務啟用狀態:" + str(statusdata[5])
-                    #smart-data-center
-                    smart="服務名稱"+ str(namedata[6])+"\n"+"服務網址"+ str(urldata[6])+"\n"+"服務啟用狀態:" + str(statusdata[6])
-                    #S3 Portal
-                    s3="服務名稱"+ str(namedata[7])+"\n"+"服務網址"+ str(urldata[7])+"\n"+"服務啟用狀態:" + str(statusdata[7])
-                    #Grafana-ups_route_current
-                    Grafana="服務名稱"+ str(namedata[8])+"\n"+"服務網址"+ str(urldata[8])+"\n"+"服務啟用狀態:" + str(statusdata[8])
-                    #Lora vehicle platform
-                    Lora="服務名稱"+ str(namedata[9])+"\n"+"服務網址"+ str(urldata[9])+"\n"+"服務啟用狀態:" + str(statusdata[9])
-                    #Private Ethereum
-                    Private="服務名稱"+ str(namedata[10])+"\n"+"服務網址"+ str(urldata[10])+"\n"+"服務啟用狀態:" + str(statusdata[10])
-                    #Tensorboard
-                    Tensorboard="服務名稱"+ str(namedata[11])+"\n"+"服務網址"+ str(urldata[11])+"\n"+"服務啟用狀態:" + str(statusdata[11])
-
-                    message = ICINGA+ "\n" + "\n"+ Kubernetes + "\n" +"\n"+ Ceph + "\n" +"\n"+ room + "\n" +"\n"+Elastsearch+ "\n" +"\n"+CORD+"\n"+ "\n"+smart+"\n"+ "\n"+s3+"\n"+ "\n"+Grafana+"\n"+ "\n"+Lora+"\n"+ "\n"+Private+"\n"+ "\n"+Tensorboard+"\n"+ "\n"
-
+                    message = returnvalue().servicelist()
                     line_bot_api.reply_message(
                         event.reply_token,
                         TextSendMessage(text=message)
