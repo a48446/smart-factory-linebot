@@ -103,7 +103,7 @@ class Message(ABC):
 #         return body , body2 , body3
 
 # 「功能列表」按鈕樣板訊息
-class Featuresmodel(Message):
+class Featuresmodel():
     def content(self):
         body_message = FlexSendMessage(
             alt_text='功能列表',
