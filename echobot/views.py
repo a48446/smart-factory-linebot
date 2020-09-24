@@ -66,12 +66,12 @@ def callback(request):
 
                 # 控制 (需修改)
                 # elif event.postback.data[0] == "控" and event.postback.data[1] == '制':
-                elif mtext[0] == "控" and mtext[1] == '制':
+                elif event.message.text == '控制':
                     line_bot_api.reply_message(
                         event.reply_token,
                         TextSendMessage(text=controltable().text())
                     )
-
+                
                 # 設定機房資訊
                 elif event.postback.data[0] == "設" and event.postback.data[1] == '定': 
                 
