@@ -9,7 +9,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
-from .message import Featuresmodel , returnvalue , controltable
+from .message import Featuresmodel , returnvalue , controltable , textmodel
 
 line_bot_api = LineBotApi('q7TWa/81a0nmW9GnqF6+u8qaFoMbi6q3Dq5VK2QM7FV8UIx3nQk5+luk5GpASk/bm5qtAmimAyA2/Ifdg6a0hH3dwMdfdAoRiGE8TF/IiRXriLsK7j9FDHlQUC34zr7EXiktLqyT5btGhtCTJXbTZQdB04t89/1O/w1cDnyilFU=')
 parser = WebhookParser("57141ec8f7ba725d4fa3fa97a5bd5169")
@@ -39,7 +39,7 @@ def callback(request):
                     )
                 if event.message.text == "控制":
                 
-                    line_bot_api.reply_message(  # 回復「功能列表」按鈕樣板訊息
+                    line_bot_api.reply_message(  # 回復「控制」按鈕輪播訊息
                         event.reply_token,
                         controltable().text()
                     )
@@ -63,20 +63,12 @@ def callback(request):
 
                 # 溫度
                 elif event.postback.data[0] == "溫" and event.postback.data[1] == '度': 
-                    messages = '安安'
+                    
                     line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text=messages,color=(0, 0, 150))
+                        TextSendMessage(text=textmodel().returna())
                     )
 
-                # 控制 (需修改)
-                # elif event.postback.data[0] == "控" and event.postback.data[1] == '制':
-                # elif event.message.text == '控制':
-                #     line_bot_api.reply_message(
-                #         event.reply_token,
-                #         TextSendMessage(text=controltable().text())
-                #     )
-                
                 # 設定機房資訊
                 elif event.postback.data[0] == "設" and event.postback.data[1] == '定': 
                 
