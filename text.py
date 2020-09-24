@@ -76,3 +76,75 @@
     "flex": 0
   }
 }
+#機房資源列表
+{
+  "type": "bubble",
+  "size": "mega",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "機房資源列表",
+            "color": "#ffffff",
+            "size": "xl",
+            "flex": 4,
+            "weight": "regular",
+            "margin": "xs"
+          }
+        ]
+      }
+    ],
+    "paddingAll": "20px",
+    "backgroundColor": "#0367D3",
+    "spacing": "md",
+    "height": "80px",
+    "paddingTop": "22px"
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "VCPU數量(顆):",
+        "color": "#0367D3"
+      },
+      {
+        "type": "text",
+        "text": "RAM數量(GB):",
+        "color": "#0367D3"
+      },
+      {
+        "type": "text",
+        "text": "機房儲存空間(TB):",
+        "color": "#0367D3"
+      },
+      {
+        "type": "text",
+        "text": "機房Switch數量(台):",
+        "color": "#0367D3"
+      },
+      {
+        "type": "text",
+        "text": "機房SDN Switch 數量(台):",
+        "color": "#0367D3"
+      },
+      {
+        "type": "text",
+        "text": "機房一般主機數量(台):",
+        "color": "#0367D3"
+      },
+      {
+        "type": "text",
+        "text": "機房伺服器數量(台):",
+        "color": "#0367D3"
+      }
+    ]
+  }
+}

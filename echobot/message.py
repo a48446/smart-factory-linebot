@@ -423,86 +423,221 @@ class returnvalue():
         return message
 
 
-class textmodel():
+class controlwind():
     def returna(self):
         flex_message = FlexSendMessage(
             alt_text='hello',
             contents={
-            "type": "bubble",
-            "hero": {
-                "type": "image",
-                "url": "https://i.imgur.com/O8lp0mk.png",
-                "size": "full",
-                "backgroundColor": "#FFEE99"
-            },
-            "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
+            "type": "carousel",
+            "contents": [
                 {
-                    "type": "text",
-                    "text": "排風風扇",
-                    "weight": "bold",
-                    "size": "xl"
+                "type": "bubble",
+                "size": "micro",
+                "hero": {
+                    "type": "image",
+                    "url": "https://i.imgur.com/O8lp0mk.png",
+                    "size": "full",
+                    "aspectMode": "fit",
+                    "aspectRatio": "320:213",
+                    "backgroundColor": "#FFEE99"
                 },
-                {
+                "body": {
                     "type": "box",
-                    "layout": "baseline",
-                    "margin": "md",
+                    "layout": "vertical",
                     "contents": [
                     {
                         "type": "text",
-                        "text": "狀態：",
-                        "size": "xs",
-                        "color": "#999999",
-                        "margin": "xs",
-                        "flex": 0
+                        "text": "排風風扇",
+                        "weight": "bold",
+                        "size": "md",
+                        "wrap": true
                     },
                     {
-                        "type": "text",
-                        "text": "open"
+                        "type": "box",
+                        "layout": "baseline",
+                        "contents": [
+                        {
+                            "type": "text",
+                            "text": "狀態：",
+                            "size": "xxs",
+                            "color": "#8c8c8c",
+                            "margin": "xs",
+                            "flex": 0
+                        }
+                        ]
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                            "type": "postback",
+                            "label": "開啟",
+                            "data": "開啟",
+                            "displayText": "開啟"
+                            }
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                            "type": "postback",
+                            "label": "關閉",
+                            "data": "關閉",
+                            "displayText": "關閉"
+                            }
+                        }
+                        ]
                     }
-                    ]
+                    ],
+                    "spacing": "sm",
+                    "paddingAll": "13px"
+                }
                 },
                 {
+                "type": "bubble",
+                "size": "micro",
+                "hero": {
+                    "type": "image",
+                    "url": "https://i.imgur.com/icAeax3.png",
+                    "size": "full",
+                    "aspectMode": "fit",
+                    "aspectRatio": "320:213",
+                    "backgroundColor": "#FFEE99"
+                },
+                "body": {
                     "type": "box",
                     "layout": "vertical",
-                    "margin": "lg",
-                    "spacing": "sm",
-                    "contents": []
-                }
-                ]
-            },
-            "footer": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                {
-                    "type": "button",
-                    "style": "link",
-                    "height": "sm",
-                    "action": {
-                    "type": "postback",
-                    "label": "開啟",
-                    "data": "開啟",
-                    "displayText": "開啟"
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "進風風扇",
+                        "weight": "bold",
+                        "size": "lg",
+                        "wrap": true
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "baseline",
+                            "spacing": "sm",
+                            "contents": [
+                            {
+                                "type": "text",
+                                "text": "狀態：",
+                                "wrap": true,
+                                "color": "#8c8c8c",
+                                "size": "xxs",
+                                "flex": 5
+                            }
+                            ]
+                        }
+                        ]
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                            "type": "postback",
+                            "label": "開啟",
+                            "data": "開啟",
+                            "displayText": "開啟"
+                            }
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                            "type": "postback",
+                            "label": "關閉",
+                            "data": "關閉",
+                            "displayText": "關閉"
+                            }
+                        }
+                        ]
                     }
+                    ],
+                    "spacing": "sm",
+                    "paddingAll": "13px"
+                }
                 },
                 {
-                    "type": "button",
-                    "style": "link",
-                    "height": "sm",
-                    "action": {
-                    "type": "postback",
-                    "label": "關閉",
-                    "data": "關閉",
-                    "displayText": "關閉"
+                "type": "bubble",
+                "size": "micro",
+                "hero": {
+                    "type": "image",
+                    "url": "https://i.imgur.com/0GJsShU.jpg",
+                    "size": "full",
+                    "aspectMode": "cover",
+                    "aspectRatio": "320:213"
+                },
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "加濕器",
+                        "weight": "bold",
+                        "size": "lg"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "baseline",
+                            "spacing": "sm",
+                            "contents": [
+                            {
+                                "type": "text",
+                                "text": "狀態：",
+                                "wrap": true,
+                                "color": "#8c8c8c",
+                                "size": "xxs",
+                                "flex": 5
+                            }
+                            ]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "postback",
+                                "label": "開啟",
+                                "data": "開啟",
+                                "displayText": "開啟"
+                                }
+                            },
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "postback",
+                                "label": "關閉",
+                                "data": "關閉",
+                                "displayText": "關閉"
+                                }
+                            }
+                            ]
+                        }
+                        ]
                     }
+                    ],
+                    "spacing": "sm",
+                    "paddingAll": "13px"
                 }
-                ],
-                "flex": 0
                 }
+            ]
             }
         )
         return flex_message
