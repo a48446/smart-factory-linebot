@@ -1,6 +1,8 @@
+import requests
 from abc import ABC, abstractmethod
 from linebot.models import TemplateSendMessage , ButtonsTemplate, PostbackTemplateAction
 from pymongo import MongoClient
+from bs4 import BeautifulSoup
 
 client = MongoClient("mongodb://nutc.iot:nutciot5891@ds237922.mlab.com:37922/smart-data-center")
 db = client["smart-data-center"]
@@ -100,7 +102,85 @@ class Featuresmodel(Message):
         )
         return body , body2 , body3
 
+# 按鈕回傳值
 class returnvalue():
+    #電流
+    def conditioning(self):
+        message = ''
+        for roomdata in RoomPowerdata.find():
+            message ="冷氣目前電流:"+ str(roomdata["airConditioning"])+"(A)"+"\n"+"最後更新時間:" + str(roomdata["time"])+"\n"+"\n"+"ups_A目前電流:" + str(roomdata["upsA"])+"(A)"+"\n"+"ups_B目前電流:"+ str(roomdata["upsB"])+"(A)"+"\n"+"最後更新時間:"+ str(roomdata["time"])
+
+        return message
+    #濕度
+    def humi(self):
+        message=''
+        for humi in dl303data.find():
+            message ="目前機房濕度:"+ str(humi["DL303_humi"])+"(%)"+"\n"+"最後更新時間:" + str(humi["time"])
+
+        return message
+    #溫度
+    def temp(self):
+        message=''
+        for temp in dl303data.find():
+            message ="目前機房溫度:"+ str(temp["DL303_temp"])+"(°C)"+"\n"+"最後更新時間:" + str(temp["time"])
+
+        return message
+    #控制
+    def control(self):
+        message=''
+        for controldata in controldata.find():
+            message = "排風風扇狀態:"+ str(controldata["outputFan"])+"\n"+"進風風扇狀態:" + str(controldata["inputFan"])+"\n""加濕器狀態:" + str(controldata["humidity"])
+
+        return message
+    #設定機房資訊
+    def setroomdata(self):
+        message=''
+        for temp in dl303data.find():
+            message ="目前機房溫度:"+ str(temp["DL303_temp"])+"(°C)"+"\n"+"最後更新時間:" + str(temp["time"])+"\n"
+
+        return message
+    #查看機房資訊
+    def watchroomdata(self):
+        message=''
+        for temp in dl303data.find():
+            message ="目前機房溫度:"+ str(temp["DL303_temp"])+"(°C)"+"\n"+"最後更新時間:" + str(temp["time"])+"\n"
+
+        return message
+    #機房資訊
+    def roomdata(self):
+        message = ""
+        for computerdata in RoomInformationdata.find():
+            message ="VCPU數量(顆):"+ str(computerdata["vcpu"])+"\n"+"RAM數量(GB):"+ str(computerdata["ram"])+"\n"+"機房儲存空間(TB):"+ str(computerdata["disk"])+"\n"+"機房Switch數量(台):"+ str(computerdata["switch"])+"\n"+"機房SDN Switch 數量(台):"+ str(computerdata["sdnSwitch"])+"\n"+"機房一般主機數量(台):"+ str(computerdata["pc"])+"\n"+"機房伺服器數量(台):"+ str(computerdata["server"])
+
+        return message
+    #每日通報
+    def Dailynews(self):
+        message = ''
+        url = "https://www.cwb.gov.tw/V8/C/W/Town/MOD/Week/6600500_Week_PC.html?T=2020091716-4"
+        html = requests.get(url)
+        s = BeautifulSoup(html.text, 'html.parser')
+        for Noticedata in RoomPowerdata.find():
+            timerange = str(Noticedata["cameraStartTime"])[0:4] + "~" + str(Noticedata["cameraEndTime"])[0:4]
+            weatherword = s.find(class_="signal").find('img').get('title')
+            rain = s.find(headers="day1 rainful d1d").text
+            maxa = s.find(class_="tem-C is-active").text[0:3]
+            maxb = s.find(class_="tem-C is-active").text[5:7]
+            maxtemp = ""
+            mina = s.find(headers="day1 lo-temp d1n").text[0:3]
+            minb = s.find(headers="day1 lo-temp d1n").text[5:7]
+            mintemp = ''
+            if maxa > maxb :
+                maxtemp = maxa
+            else:
+                maxtemp = maxb
+            if mina > minb :
+                mintemp = minb
+            else:
+                mintemp = mina
+            message ="昨日冷氣消耗"+ str(Noticedata["airConditioning"])+"度"+"\n"+"昨日ups_A消耗:" + str(Noticedata["upsA"])+"度"+"\n"+"昨日ups_B消耗:" + str(Noticedata["upsB"])+"度"+"\n"+"昨日水塔馬達消耗:"+ str(Noticedata["waterTank"])+"度"+"\n"+"前天電錶數值:"+ str(Noticedata["cameraPowerBeforeDay2"])+"度"+"\n"+"昨日電錶數值:"+ str(Noticedata["cameraPowerBeforeDay1"])+"度"+"\n"+"昨日電錶數值:"+ str(Noticedata["cameraPower"])+"度"+"\n"+"昨日電錶消耗:"+ str(Noticedata["cameraPowerConsumption"])+"度"+"\n" + timerange + "\n" + "天氣:" + weatherword + "\n" +"最低溫度:" + mintemp+ "°C" + "\n" + "最高溫度:" + maxtemp+ "°C" +"\n" + "降雨機率:" + rain
+
+        return message
+    #機房服務列表
     def servicelist(self):
         urldata = []
         namedata = []

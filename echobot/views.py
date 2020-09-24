@@ -1,10 +1,7 @@
 import os
 import json
-import requests
-from pymongo import MongoClient
 from bson.objectid import ObjectId
 from datetime import datetime
-from bs4 import BeautifulSoup
 from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError, LineBotApiError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage ,TemplateSendMessage,ButtonsTemplate,MessageTemplateAction,PostbackEvent
@@ -16,18 +13,6 @@ from .message import Featuresmodel , returnvalue
 
 line_bot_api = LineBotApi('q7TWa/81a0nmW9GnqF6+u8qaFoMbi6q3Dq5VK2QM7FV8UIx3nQk5+luk5GpASk/bm5qtAmimAyA2/Ifdg6a0hH3dwMdfdAoRiGE8TF/IiRXriLsK7j9FDHlQUC34zr7EXiktLqyT5btGhtCTJXbTZQdB04t89/1O/w1cDnyilFU=')
 parser = WebhookParser("57141ec8f7ba725d4fa3fa97a5bd5169")
-
-client = MongoClient("mongodb://nutc.iot:nutciot5891@ds237922.mlab.com:37922/smart-data-center")
-db = client["smart-data-center"]
-
-#mongoDB資料庫
-dl303data = db.dl303
-upsAdata = db.ups_A
-upsBdata = db.ups_B
-RoomPowerdata = db.computerRoomPower
-RoomInformationdata = db.computerRoomInformation
-serviceListdata = db.serviceList
-controldata = db.control
 
 @csrf_exempt
 def callback(request):
@@ -57,119 +42,74 @@ def callback(request):
 
                 # 電流
                 if event.postback.data[0] == "電" and event.postback.data[1] == '流':  # 如果回傳值為「電流」
-                    message = ''
-                    for roomdata in RoomPowerdata.find():
-                        message ="冷氣目前電流:"+ str(roomdata["airConditioning"])+"(A)"+"\n"+"最後更新時間:" + str(roomdata["time"])+"\n"+"\n"+"ups_A目前電流:" + str(roomdata["upsA"])+"(A)"+"\n"+"ups_B目前電流:"+ str(roomdata["upsB"])+"(A)"+"\n"+"最後更新時間:"+ str(roomdata["time"])
-       
+
                     line_bot_api.reply_message(  # 回復訊息文字
                         event.reply_token,
-                        TextSendMessage(text=message)
+                        TextSendMessage(text=returnvalue().conditioning())
                     )
 
                 # 濕度
                 elif event.postback.data[0] == "濕" and event.postback.data[1] == '度':
-                    message=''
-                    for humi in dl303data.find():
-                        message ="目前機房濕度:"+ str(humi["DL303_humi"])+"(%)"+"\n"+"最後更新時間:" + str(humi["time"])
 
                     line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text=message)
+                        TextSendMessage(text=returnvalue().humi())
                     )
 
                 # 溫度
                 elif event.postback.data[0] == "溫" and event.postback.data[1] == '度': 
-                    message=''
-                    for temp in dl303data.find():
-                        message ="目前機房溫度:"+ str(temp["DL303_temp"])+"(°C)"+"\n"+"最後更新時間:" + str(temp["time"])
-    
+             
                     line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text=message)
+                        TextSendMessage(text=returnvalue().temp())
                     )
 
                 # 控制 (需修改)
                 elif event.postback.data[0] == "控" and event.postback.data[1] == '制':
-                    message=''
-                    for controldata in controldata.find():
-                        message = "排風風扇狀態:"+ str(controldata["outputFan"])+"\n"+"進風風扇狀態:" + str(controldata["inputFan"])+"\n""加濕器狀態:" + str(controldata["humidity"])
-
+                    
                     line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text=message)
+                        TextSendMessage(text=returnvalue().control())
                     )
 
                 # 設定機房資訊
                 elif event.postback.data[0] == "設" and event.postback.data[1] == '定': 
-                    message=''
-                    for temp in dl303data.find():
-                        message ="目前機房溫度:"+ str(temp["DL303_temp"])+"(°C)"+"\n"+"最後更新時間:" + str(temp["time"])+"\n"
-    
+                    
                     line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text=message)
+                        TextSendMessage(text=returnvalue().setroomdata())
                     )    
 
                 # 查看機房資訊
                 elif event.postback.data[0] == "查" and event.postback.data[5] == '訊': 
-                    message=''
-                    for temp in dl303data.find():
-                        message ="目前機房溫度:"+ str(temp["DL303_temp"])+"(°C)"+"\n"+"最後更新時間:" + str(temp["time"])+"\n"
-    
+                    
                     line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text=message,color='#054E9F')
+                        TextSendMessage(text=returnvalue().watchroomdata(),color='#054E9F')
                     )
 
                 # 機房資訊
                 elif event.postback.data[0] == "機" and event.postback.data[2] == '資': 
-                    message = ""
-                    for computerdata in RoomInformationdata.find():
-                        message ="VCPU數量(顆):"+ str(computerdata["vcpu"])+"\n"+"RAM數量(GB):"+ str(computerdata["ram"])+"\n"+"機房儲存空間(TB):"+ str(computerdata["disk"])+"\n"+"機房Switch數量(台):"+ str(computerdata["switch"])+"\n"+"機房SDN Switch 數量(台):"+ str(computerdata["sdnSwitch"])+"\n"+"機房一般主機數量(台):"+ str(computerdata["pc"])+"\n"+"機房伺服器數量(台):"+ str(computerdata["server"])
-      
+                    
                     line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text=message)
+                        TextSendMessage(text=returnvalue().roomdata())
                     )
 
                 # 每日通報資訊
                 elif event.postback.data[0] == "每" and event.postback.data[1] == '日': 
-                    message = ''
-                    url = "https://www.cwb.gov.tw/V8/C/W/Town/MOD/Week/6600500_Week_PC.html?T=2020091716-4"
-                    html = requests.get(url)
-                    s = BeautifulSoup(html.text, 'html.parser')
-                    for Noticedata in RoomPowerdata.find():
-                        timerange = str(Noticedata["cameraStartTime"])[0:4] + "~" + str(Noticedata["cameraEndTime"])[0:4]
-                        weatherword = s.find(class_="signal").find('img').get('title')
-                        rain = s.find(headers="day1 rainful d1d").text
-                        maxa = s.find(class_="tem-C is-active").text[0:3]
-                        maxb = s.find(class_="tem-C is-active").text[5:7]
-                        maxtemp = ""
-                        mina = s.find(headers="day1 lo-temp d1n").text[0:3]
-                        minb = s.find(headers="day1 lo-temp d1n").text[5:7]
-                        mintemp = ''
-                        if maxa > maxb :
-                            maxtemp = maxa
-                        else:
-                            maxtemp = maxb
-                        if mina > minb :
-                            mintemp = minb
-                        else:
-                            mintemp = mina
-
-                        message ="昨日冷氣消耗"+ str(Noticedata["airConditioning"])+"度"+"\n"+"昨日ups_A消耗:" + str(Noticedata["upsA"])+"度"+"\n"+"昨日ups_B消耗:" + str(Noticedata["upsB"])+"度"+"\n"+"昨日水塔馬達消耗:"+ str(Noticedata["waterTank"])+"度"+"\n"+"前天電錶數值:"+ str(Noticedata["cameraPowerBeforeDay2"])+"度"+"\n"+"昨日電錶數值:"+ str(Noticedata["cameraPowerBeforeDay1"])+"度"+"\n"+"昨日電錶數值:"+ str(Noticedata["cameraPower"])+"度"+"\n"+"昨日電錶消耗:"+ str(Noticedata["cameraPowerConsumption"])+"度"+"\n" + timerange + "\n" + "天氣:" + weatherword + "\n" +"最低溫度:" + mintemp+ "°C" + "\n" + "最高溫度:" + maxtemp+ "°C" +"\n" + "降雨機率:" + rain
-
+                    
                     line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text=message)
+                        TextSendMessage(text=returnvalue().Dailynews())
                     )
 
                 # 機房服務列表
                 elif event.postback.data[2] == "服" and event.postback.data[3] == '務': 
-                    message = returnvalue().servicelist()
+
                     line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text=message)
+                        TextSendMessage(text=returnvalue().servicelist())
                     )
 
                 
