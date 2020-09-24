@@ -41,7 +41,8 @@ def callback(request):
                 
                     line_bot_api.reply_message(  # 回復「控制」按鈕輪播訊息
                         event.reply_token,
-                        controltable().text()
+                        # controltable().text()
+                        textmodel().returna()
                     )
 
             elif isinstance(event, PostbackEvent,MessageEvent):  # 如果有訊息回傳
@@ -63,10 +64,10 @@ def callback(request):
 
                 # 溫度
                 elif event.postback.data[0] == "溫" and event.postback.data[1] == '度': 
-                    
+                    messages = '安安'
                     line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text=textmodel().returna())
+                        TextSendMessage(text=messages)
                     )
 
                 # 設定機房資訊
