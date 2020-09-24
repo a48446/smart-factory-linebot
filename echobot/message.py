@@ -1,5 +1,18 @@
 from abc import ABC, abstractmethod
 from linebot.models import TemplateSendMessage , ButtonsTemplate, PostbackTemplateAction
+from pymongo import MongoClient
+
+client = MongoClient("mongodb://nutc.iot:nutciot5891@ds237922.mlab.com:37922/smart-data-center")
+db = client["smart-data-center"]
+
+#mongoDB資料庫
+dl303data = db.dl303
+upsAdata = db.ups_A
+upsBdata = db.ups_B
+RoomPowerdata = db.computerRoomPower
+RoomInformationdata = db.computerRoomInformation
+serviceListdata = db.serviceList
+controldata = db.control
 
 # 訊息抽象類別
 class Message(ABC):
@@ -87,7 +100,7 @@ class Featuresmodel(Message):
         )
         return body , body2 , body3
 
-class returnvalue(Message):
+class returnvalue():
     def servicelist(self):
         urldata = []
         namedata = []
