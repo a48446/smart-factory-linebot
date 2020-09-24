@@ -105,8 +105,8 @@ class Message(ABC):
 # 「功能列表」按鈕樣板訊息
 class Featuresmodel(Message):
     def content(self):
-        body = FlexSendMessage(
-            alt_text='hello',
+        body_message = FlexSendMessage(
+            alt_text='功能列表',
             contents={
                 "type": "bubble",
                 "size": "mega",
@@ -297,7 +297,7 @@ class Featuresmodel(Message):
                 }
                 }
             )
-        return body
+        return body_message
 
 # 按鈕回傳值
 class returnvalue():
