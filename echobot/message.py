@@ -1,6 +1,6 @@
 import requests
 from abc import ABC, abstractmethod
-from linebot.models import TemplateSendMessage , ButtonsTemplate, PostbackTemplateAction
+from linebot.models import TemplateSendMessage , ButtonsTemplate, PostbackTemplateAction , CarouselTemplate , CarouselColumn , MessageTemplateAction , URITemplateAction
 from pymongo import MongoClient
 from bs4 import BeautifulSoup
 
@@ -224,3 +224,62 @@ class returnvalue():
 
         message = ICINGA+ "\n" + "\n"+ Kubernetes + "\n" +"\n"+ Ceph + "\n" +"\n"+ room + "\n" +"\n"+Elastsearch+ "\n" +"\n"+CORD+"\n"+ "\n"+smart+"\n"+ "\n"+s3+"\n"+ "\n"+Grafana+"\n"+ "\n"+Lora+"\n"+ "\n"+Private+"\n"+ "\n"+Tensorboard+"\n"+ "\n"
         return message
+
+class controltable():
+    def data(self):
+        body = TemplateSendMessage(
+            alt_text='Carousel template',
+            template=CarouselTemplate(
+            columns=[
+                CarouselColumn(
+                    thumbnail_image_url='https://i.imgur.com/O8lp0mk.png',
+                    title='排風風扇',
+                    text='true',
+                    actions=[
+                        PostbackTemplateAction(
+                            label='postback1',
+                            text='postback text1',
+                            data='action=buy&itemid=1'
+                        ),
+                        MessageTemplateAction(
+                            label='message1',
+                            text='message text1'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://i.imgur.com/icAeax3.png',
+                    title='進風風扇',
+                    text='true',
+                    actions=[
+                        PostbackTemplateAction(
+                            label='postback2',
+                            text='postback text2',
+                            data='action=buy&itemid=2'
+                        ),
+                        MessageTemplateAction(
+                            label='message2',
+                            text='message text2'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://i.imgur.com/0GJsShU.jpg',
+                    title='加溼器',
+                    text='true',
+                    actions=[
+                        PostbackTemplateAction(
+                            label='postback3',
+                            text='postback text3',
+                            data='action=buy&itemid=3'
+                        ),
+                        MessageTemplateAction(
+                            label='message3',
+                            text='message text3'
+                        )
+                    ]
+                )
+            ]
+        )
+        )
+        return body
