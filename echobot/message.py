@@ -449,8 +449,7 @@ class controlwind():
                         "type": "text",
                         "text": "排風風扇",
                         "weight": "bold",
-                        "size": "md",
-                        "wrap": true
+                        "size": "md"
                     },
                     {
                         "type": "box",
@@ -514,8 +513,7 @@ class controlwind():
                         "type": "text",
                         "text": "進風風扇",
                         "weight": "bold",
-                        "size": "lg",
-                        "wrap": true
+                        "size": "lg"
                     },
                     {
                         "type": "box",
@@ -529,7 +527,6 @@ class controlwind():
                             {
                                 "type": "text",
                                 "text": "狀態：",
-                                "wrap": true,
                                 "color": "#8c8c8c",
                                 "size": "xxs",
                                 "flex": 5
@@ -599,7 +596,6 @@ class controlwind():
                             {
                                 "type": "text",
                                 "text": "狀態：",
-                                "wrap": true,
                                 "color": "#8c8c8c",
                                 "size": "xxs",
                                 "flex": 5
