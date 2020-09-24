@@ -58,10 +58,29 @@ def callback(request):
 
                 # 溫度
                 elif event.postback.data[0] == "溫" and event.postback.data[1] == '度': 
-             
+                    messages = ''
+                    messages: [{
+                        "type": "flex",
+                        "altText": "功能列表",
+                        "contents": {
+                            "type": "bubble",
+                            "header": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "color": "#ffffff",
+                                        "text": "功能列表",
+                                        "size": "xl"
+                                    }
+                                ]
+                            }
+                        }
+                    }]  
                     line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text=returnvalue().temp())
+                        TextSendMessage(text=messages)
                     )
 
                 # 控制 (需修改)
