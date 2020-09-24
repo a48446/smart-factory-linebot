@@ -32,14 +32,14 @@ def callback(request):
             if isinstance(event, MessageEvent):  # 如果有訊息事件
 
                 if event.message.text == "功能列表":
-            
+                
                     line_bot_api.reply_message(  # 回復「功能列表」按鈕樣板訊息
                         event.reply_token,
-                        controltable().text()
+                        Featuresmodel().content()
                     )
 
             elif isinstance(event, PostbackEvent):  # 如果有訊息回傳
-
+                mtext = event.message.text
                 # 電流
                 if event.postback.data[0] == "電" and event.postback.data[1] == '流':  # 如果回傳值為「電流」
 
@@ -65,8 +65,8 @@ def callback(request):
                     )
 
                 # 控制 (需修改)
-                elif event.postback.data[0] == "控" and event.postback.data[1] == '制':
-                    
+                # elif event.postback.data[0] == "控" and event.postback.data[1] == '制':
+                elif mtext[0] == "控" and mtext[1] == '制':
                     line_bot_api.reply_message(
                         event.reply_token,
                         TextSendMessage(text=controltable().text())
@@ -74,7 +74,7 @@ def callback(request):
 
                 # 設定機房資訊
                 elif event.postback.data[0] == "設" and event.postback.data[1] == '定': 
-                    
+                
                     line_bot_api.reply_message(
                         event.reply_token,
                         TextSendMessage(text=returnvalue().setroomdata())
