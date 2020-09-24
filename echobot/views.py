@@ -45,7 +45,7 @@ def callback(request):
                         textmodel().returna()
                     )
 
-            elif isinstance(event, PostbackEvent,MessageEvent):  # 如果有訊息回傳
+            elif isinstance(event, PostbackEvent):  # 如果有訊息回傳
                 # 電流
                 if event.postback.data[0] == "電" and event.postback.data[1] == '流':  # 如果回傳值為「電流」
 
@@ -64,10 +64,10 @@ def callback(request):
 
                 # 溫度
                 elif event.postback.data[0] == "溫" and event.postback.data[1] == '度': 
-                    messages = '安安'
+                    
                     line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text=messages)
+                        TextSendMessage(text=returnvalue().temp())
                     )
 
                 # 設定機房資訊
