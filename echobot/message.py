@@ -25,82 +25,279 @@ class Message(ABC):
     def content(self):
         pass
 
+# # 「功能列表」按鈕樣板訊息
+# class Featuresmodel(Message):
+#     def content(self):
+#         body = TemplateSendMessage(
+#             alt_text='Buttons template',
+#             template=ButtonsTemplate(
+#                 title='功能列表',
+#                 text='請選擇想要使用的功能',
+#                 actions=[
+#                     PostbackTemplateAction(
+#                         label='電流',
+#                         text='電流',
+#                         data='電流'
+#                     ),
+#                     PostbackTemplateAction(
+#                         label='濕度',
+#                         text='濕度',
+#                         data='濕度'
+#                     ),
+#                     PostbackTemplateAction(
+#                         label='溫度',
+#                         text='溫度',
+#                         data='溫度'
+#                     ),
+#                     PostbackTemplateAction(
+#                         label='控制',
+#                         text='控制',
+#                         data='控制'
+#                     )
+#                 ]
+#             )
+#         )
+#         body2 = TemplateSendMessage(
+#             alt_text='Buttons template',
+#             template=ButtonsTemplate(
+#                 title='功能列表',
+#                 text='請選擇想要使用的功能',
+#                 actions=[
+#                     PostbackTemplateAction(
+#                         label='設定機房資訊',
+#                         text='設定機房資訊',
+#                         data='設定機房資訊'
+#                     ),
+#                     PostbackTemplateAction(
+#                         label='查看機房資訊',
+#                         text='查看機房資訊',
+#                         data='查看機房資訊'
+#                     ),
+#                     PostbackTemplateAction(
+#                         label='機房資訊',
+#                         text='機房資訊',
+#                         data='機房資訊'
+#                     ),
+#                     PostbackTemplateAction(
+#                         label='每日通報資訊',
+#                         text='每日通報資訊',
+#                         data='每日通報資訊'
+#                     )
+#                 ]
+#             )
+#         )
+#         body3 = TemplateSendMessage(
+#             alt_text='Buttons template',
+#             template=ButtonsTemplate(
+#                 title='功能列表',
+#                 text='請選擇想要使用的功能',
+#                 actions=[
+#                     PostbackTemplateAction(
+#                         label='機房服務列表',
+#                         text='機房服務列表',
+#                         data='機房服務列表'
+#                     )
+#                 ]
+#             )
+#         )
+#         return body , body2 , body3
+
 # 「功能列表」按鈕樣板訊息
 class Featuresmodel(Message):
     def content(self):
-        body = TemplateSendMessage(
-            alt_text='Buttons template',
-            template=ButtonsTemplate(
-                title='功能列表',
-                text='請選擇想要使用的功能',
-                actions=[
-                    PostbackTemplateAction(
-                        label='電流',
-                        text='電流',
-                        data='電流'
-                    ),
-                    PostbackTemplateAction(
-                        label='濕度',
-                        text='濕度',
-                        data='濕度'
-                    ),
-                    PostbackTemplateAction(
-                        label='溫度',
-                        text='溫度',
-                        data='溫度'
-                    ),
-                    PostbackTemplateAction(
-                        label='控制',
-                        text='控制',
-                        data='控制'
-                    )
-                ]
+        body = FlexSendMessage(
+            alt_text='hello',
+            contents={
+                "type": "bubble",
+                "size": "mega",
+                "header": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "text",
+                            "text": "功能列表",
+                            "color": "#ffffff",
+                            "size": "xl",
+                            "flex": 4,
+                            "weight": "regular",
+                            "margin": "xs"
+                        }
+                        ]
+                    }
+                    ],
+                    "paddingAll": "20px",
+                    "backgroundColor": "#0367D3",
+                    "spacing": "md",
+                    "height": "80px",
+                    "paddingTop": "22px"
+                },
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                            "type": "postback",
+                            "label": "電流",
+                            "data": "電流",
+                            "displayText": "電流"
+                            },
+                            "color": "#ffffff"
+                        }
+                        ],
+                        "backgroundColor": "#0367D3"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                            "type": "postback",
+                            "label": "濕度",
+                            "data": "濕度",
+                            "displayText": "濕度"
+                            },
+                            "color": "#ffffff"
+                        }
+                        ],
+                        "backgroundColor": "#0367D3"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                            "type": "postback",
+                            "label": "溫度",
+                            "data": "溫度",
+                            "displayText": "溫度"
+                            },
+                            "color": "#ffffff"
+                        }
+                        ],
+                        "backgroundColor": "#0367D3"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                            "type": "message",
+                            "label": "控制",
+                            "text": "控制"
+                            },
+                            "color": "#ffffff"
+                        }
+                        ],
+                        "backgroundColor": "#0367D3"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                            "type": "postback",
+                            "label": "設定機房資訊",
+                            "data": "設定機房資訊",
+                            "displayText": "設定機房資訊"
+                            },
+                            "color": "#ffffff"
+                        }
+                        ],
+                        "backgroundColor": "#0367D3"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                            "type": "postback",
+                            "label": "查看機房資訊",
+                            "data": "查看機房資訊",
+                            "displayText": "查看機房資訊"
+                            },
+                            "color": "#ffffff"
+                        }
+                        ],
+                        "backgroundColor": "#0367D3"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                            "type": "postback",
+                            "label": "機房資訊",
+                            "data": "機房資訊",
+                            "displayText": "機房資訊"
+                            },
+                            "color": "#ffffff"
+                        }
+                        ],
+                        "backgroundColor": "#0367D3"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                            "type": "postback",
+                            "label": "每日通報資訊",
+                            "data": "每日通報資訊",
+                            "displayText": "每日通報資訊"
+                            },
+                            "color": "#ffffff"
+                        }
+                        ],
+                        "backgroundColor": "#0367D3"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                            "type": "postback",
+                            "label": "機房服務列表",
+                            "data": "機房服務列表",
+                            "displayText": "機房服務列表"
+                            },
+                            "color": "#ffffff"
+                        }
+                        ],
+                        "backgroundColor": "#0367D3"
+                    }
+                    ],
+                    "spacing": "xs"
+                }
+                }
             )
-        )
-        body2 = TemplateSendMessage(
-            alt_text='Buttons template',
-            template=ButtonsTemplate(
-                title='功能列表',
-                text='請選擇想要使用的功能',
-                actions=[
-                    PostbackTemplateAction(
-                        label='設定機房資訊',
-                        text='設定機房資訊',
-                        data='設定機房資訊'
-                    ),
-                    PostbackTemplateAction(
-                        label='查看機房資訊',
-                        text='查看機房資訊',
-                        data='查看機房資訊'
-                    ),
-                    PostbackTemplateAction(
-                        label='機房資訊',
-                        text='機房資訊',
-                        data='機房資訊'
-                    ),
-                    PostbackTemplateAction(
-                        label='每日通報資訊',
-                        text='每日通報資訊',
-                        data='每日通報資訊'
-                    )
-                ]
-            )
-        )
-        body3 = TemplateSendMessage(
-            alt_text='Buttons template',
-            template=ButtonsTemplate(
-                title='功能列表',
-                text='請選擇想要使用的功能',
-                actions=[
-                    PostbackTemplateAction(
-                        label='機房服務列表',
-                        text='機房服務列表',
-                        data='機房服務列表'
-                    )
-                ]
-            )
-        )
-        return body , body2 , body3
+        return body
 
 # 按鈕回傳值
 class returnvalue():
@@ -225,56 +422,6 @@ class returnvalue():
         message = ICINGA+ "\n" + "\n"+ Kubernetes + "\n" +"\n"+ Ceph + "\n" +"\n"+ room + "\n" +"\n"+Elastsearch+ "\n" +"\n"+CORD+"\n"+ "\n"+smart+"\n"+ "\n"+s3+"\n"+ "\n"+Grafana+"\n"+ "\n"+Lora+"\n"+ "\n"+Private+"\n"+ "\n"+Tensorboard+"\n"+ "\n"
         return message
 
-class controltable():
-    def text(self):
-        carousel_template_message = TemplateSendMessage(
-            alt_text='Carousel template',
-            template=CarouselTemplate(
-                columns=[
-                    CarouselColumn(
-                        thumbnail_image_url='https://example.com/item1.jpg',
-                        title='this is menu1',
-                        text='description1',
-                        actions=[
-                            PostbackAction(
-                                label='postback1',
-                                display_text='postback text1',
-                                data='action=buy&itemid=1'
-                            ),
-                            MessageAction(
-                                label='message1',
-                                text='message text1'
-                            ),
-                            URIAction(
-                                label='uri1',
-                                uri='http://example.com/1'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://example.com/item2.jpg',
-                        title='this is menu2',
-                        text='description2',
-                        actions=[
-                            PostbackAction(
-                                label='postback2',
-                                display_text='postback text2',
-                                data='action=buy&itemid=2'
-                            ),
-                            MessageAction(
-                                label='message2',
-                                text='message text2'
-                            ),
-                            URIAction(
-                                label='uri2',
-                                uri='http://example.com/2'
-                            )
-                        ]
-                    )
-                ]
-            )
-        )
-        return carousel_template_message
 
 class textmodel():
     def returna(self):
@@ -359,3 +506,4 @@ class textmodel():
             }
         )
         return flex_message
+

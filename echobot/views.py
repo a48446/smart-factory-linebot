@@ -35,8 +35,7 @@ def callback(request):
                 
                     line_bot_api.reply_message(  # 回復「功能列表」按鈕樣板訊息
                         event.reply_token,
-                        textmodel().returna()
-                        # Featuresmodel().content()
+                        Featuresmodel().content()
                     )
                 if event.message.text == "控制":
                 
