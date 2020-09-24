@@ -226,32 +226,6 @@ class returnvalue():
         return message
 
 class controltable():
-    # def content(self):
-        # body = TemplateSendMessage(
-        #     alt_text='Carousel template',
-        #     template=CarouselTemplate(
-        #     columns=[
-        #         CarouselColumn(
-        #             thumbnail_image_url='https://i.imgur.com/O8lp0mk.png',
-        #             title='排風風扇',
-        #             text='true',
-        #             actions=[
-        #                 PostbackTemplateAction(
-        #                     label='postback1',
-        #                     text='postback text1',
-        #                     data='action=buy&itemid=1'
-        #                             ),
-        #                 MessageTemplateAction(
-        #                     label='message1',
-        #                     text='message text1'
-        #                             )
-        #                         ]
-        #                      )
-        #                 ]
-        #             )
-        #         )
-        
-        # return body
     def text(self):
         carousel_template_message = TemplateSendMessage(
             alt_text='Carousel template',
@@ -307,15 +281,82 @@ class textmodel():
         flex_message = FlexSendMessage(
             alt_text='hello',
             contents={
-                'type': 'bubble',
-                'direction': 'ltr',
-                'hero': {
-                    'type': 'image',
-                    'url': 'https://example.com/cafe.jpg',
-                    'size': 'full',
-                    'aspectRatio': '20:13',
-                    'aspectMode': 'cover',
-                    'action': { 'type': 'uri', 'uri': 'http://example.com', 'label': 'label' }
+                "type": "bubble",
+                "hero": {
+                    "type": "image",
+                    "url": "https://i.imgur.com/O8lp0mk.png",
+                    "size": "full",
+                    "aspectRatio": "20:13",
+                    "aspectMode": "fit",
+                    "action": {
+                    "type": "uri",
+                    "uri": "http://linecorp.com/"
+                    },
+                    "backgroundColor": "#FFEE99"
+                },
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "排風風扇",
+                        "weight": "bold",
+                        "size": "xl"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "baseline",
+                        "margin": "md",
+                        "contents": [
+                        {
+                            "type": "text",
+                            "text": "狀態：",
+                            "size": "xs",
+                            "color": "#999999",
+                            "margin": "xs",
+                            "flex": 0
+                        }
+                        ]
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "margin": "lg",
+                        "spacing": "sm",
+                        "contents": []
+                    }
+                    ]
+                },
+                "footer": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "spacing": "sm",
+                    "contents": [
+                    {
+                        "type": "button",
+                        "style": "link",
+                        "height": "sm",
+                        "action": {
+                        "type": "postback",
+                        "label": "開啟",
+                        "data": "開啟",
+                        "displayText": "開啟"
+                        }
+                    },
+                    {
+                        "type": "button",
+                        "style": "link",
+                        "height": "sm",
+                        "action": {
+                        "type": "postback",
+                        "label": "關閉",
+                        "data": "關閉",
+                        "displayText": "關閉"
+                        }
+                    }
+                    ],
+                    "flex": 0
                 }
             }
         )
