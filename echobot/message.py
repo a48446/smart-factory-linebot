@@ -422,7 +422,7 @@ class returnvalue():
         message = ICINGA+ "\n" + "\n"+ Kubernetes + "\n" +"\n"+ Ceph + "\n" +"\n"+ room + "\n" +"\n"+Elastsearch+ "\n" +"\n"+CORD+"\n"+ "\n"+smart+"\n"+ "\n"+s3+"\n"+ "\n"+Grafana+"\n"+ "\n"+Lora+"\n"+ "\n"+Private+"\n"+ "\n"+Tensorboard+"\n"+ "\n"
         return message
 
-
+# 風扇輪播按鈕訊息
 class controlwind():
     def returna(self):
         flex_message = FlexSendMessage(
@@ -634,6 +634,470 @@ class controlwind():
                 }
                 }
             ]
+            }
+        )
+        return flex_message
+
+# 機房資源列表訊息
+class roomlable():
+    def returna(self):
+        urldata = []
+        namedata = []
+        accpasdata= []
+        statusdata = []
+        serviceList = ""
+        for serviceList in serviceListdata.find():
+            name = serviceList["name"]
+            url = serviceList["url"]
+            accpas = serviceList["notice"]
+            status = serviceList["enabled"]
+            namedata.append(name)
+            urldata.append(url)
+            accpasdata.append(accpas)
+            statusdata.append(status)
+
+        flex_message = FlexSendMessage(
+            alt_text='hello',
+            contents={
+            "type": "bubble",
+            "size": "mega",
+            "header": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "機房資源列表",
+                        "color": "#ffffff",
+                        "size": "xl",
+                        "flex": 4,
+                        "weight": "regular",
+                        "margin": "xs"
+                    }
+                    ]
+                }
+                ],
+                "paddingAll": "20px",
+                "backgroundColor": "#0367D3",
+                "spacing": "md",
+                "height": "80px",
+                "paddingTop": "22px"
+            },
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:"+ str(namedata[0]),
+                        "size": "lg"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:" + str(urldata[0])
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:" + str(statusdata[0])
+                    },
+                    {
+                        "type": "text",
+                        "text": "備註:" + str(accpasdata[0])
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往ICINGA",
+                                "uri": "http://10.0.0.41/icingaweb2/authentication/login"
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:",
+                        "size": "lg"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "備註: 帳  密"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往Kubernetes Dashboard",
+                                "uri": "http://linecorp.com/"
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:",
+                        "size": "lg"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "備註: 帳  密"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往Ceph",
+                                "uri": "http://linecorp.com/"
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:",
+                        "size": "lg"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "備註: 帳  密"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往機房環控分析系統",
+                                "uri": "http://linecorp.com/"
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:",
+                        "size": "lg"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "備註: 帳  密"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往Elastsearch Dashboard",
+                                "uri": "http://linecorp.com/"
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:",
+                        "size": "lg"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "備註: 帳  密"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往CORD",
+                                "uri": "http://linecorp.com/"
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:",
+                        "size": "lg"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "備註: 帳  密"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往 smart-data-center",
+                                "uri": "http://linecorp.com/"
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:",
+                        "size": "lg"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "備註: 帳  密"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往 S3 Portal",
+                                "uri": "http://linecorp.com/"
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:",
+                        "size": "lg"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:"
+                    },
+                    {
+                        "type": "text",
+                        "text": "備註: 帳  密"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往  Grafana-ups_route_current",
+                                "uri": "http://linecorp.com/"
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                }
+                ]
+            }
             }
         )
         return flex_message
