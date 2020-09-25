@@ -214,10 +214,9 @@ class Featuresmodel():
                     {
                         "type": "button",
                         "action": {
-                        "type": "postback",
+                        "type": "message",
                         "label": "設定機房資訊",
-                        "data": "設定機房資訊",
-                        "displayText": "設定機房資訊"
+                        "text": "設定機房資訊"
                         },
                         "color": "#ffffff"
                     }
@@ -231,10 +230,9 @@ class Featuresmodel():
                     {
                         "type": "button",
                         "action": {
-                        "type": "postback",
+                        "type": "message",
                         "label": "查看機房資訊",
-                        "data": "查看機房資訊",
-                        "displayText": "查看機房資訊"
+                        "text": "查看機房資訊"
                         },
                         "color": "#ffffff"
                     }
@@ -248,10 +246,9 @@ class Featuresmodel():
                     {
                         "type": "button",
                         "action": {
-                        "type": "postback",
+                        "type": "message",
                         "label": "機房資訊",
-                        "data": "機房資訊",
-                        "displayText": "機房資訊"
+                        "text": "機房資訊"
                         },
                         "color": "#ffffff"
                     }
@@ -265,10 +262,9 @@ class Featuresmodel():
                     {
                         "type": "button",
                         "action": {
-                        "type": "postback",
+                        "type": "message",
                         "label": "每日通報資訊",
-                        "data": "每日通報資訊",
-                        "displayText": "每日通報資訊"
+                        "text": "每日通報資訊"
                         },
                         "color": "#ffffff"
                     }
@@ -282,10 +278,9 @@ class Featuresmodel():
                     {
                         "type": "button",
                         "action": {
-                        "type": "postback",
+                        "type": "message",
                         "label": "機房服務列表",
-                        "data": "機房服務列表",
-                        "displayText": "機房服務列表"
+                        "text": "機房服務列表"
                         },
                         "color": "#ffffff"
                     }
@@ -698,19 +693,20 @@ class roomlable():
                     {
                         "type": "text",
                         "text": "服務名稱:"+ str(namedata[0]),
-                        "size": "lg"
+                        "size": "lg",
+                        "color": "#0367D3"
                     },
                     {
                         "type": "text",
-                        "text": "服務網址:" + str(urldata[0])
+                        "text": "服務網址:"+ str(urldata[0])
                     },
                     {
                         "type": "text",
-                        "text": "服務啟用狀態:" + str(statusdata[0])
+                        "text": "服務啟用狀態:"+ str(statusdata[0])
                     },
                     {
                         "type": "text",
-                        "text": "備註:" + str(accpasdata[0])
+                        "text": "備註:"+ str(accpasdata[0])
                     },
                     {
                         "type": "box",
@@ -742,20 +738,17 @@ class roomlable():
                     "contents": [
                     {
                         "type": "text",
-                        "text": "服務名稱:",
-                        "size": "lg"
+                        "text": "服務名稱:"+ str(namedata[1]),
+                        "size": "lg",
+                        "color": "#0367D3"
                     },
                     {
                         "type": "text",
-                        "text": "服務網址:"
+                        "text": "服務網址:"+ str(urldata[1])
                     },
                     {
                         "type": "text",
-                        "text": "服務啟用狀態:"
-                    },
-                    {
-                        "type": "text",
-                        "text": "備註: 帳  密"
+                        "text": "服務啟用狀態:" + str(statusdata[1])
                     },
                     {
                         "type": "box",
@@ -770,7 +763,7 @@ class roomlable():
                                 "action": {
                                 "type": "uri",
                                 "label": "前往Kubernetes Dashboard",
-                                "uri": "http://linecorp.com/"
+                                "uri": "https://10.0.0.232:32222"
                                 },
                                 "color": "#FFFFFF"
                             }
@@ -787,20 +780,17 @@ class roomlable():
                     "contents": [
                     {
                         "type": "text",
-                        "text": "服務名稱:",
-                        "size": "lg"
+                        "text": "服務名稱:"+ str(namedata[2]),
+                        "size": "lg",
+                        "color": "#0367D3"
                     },
                     {
                         "type": "text",
-                        "text": "服務網址:"
+                        "text": "服務網址:"+ str(urldata[2])
                     },
                     {
                         "type": "text",
-                        "text": "服務啟用狀態:"
-                    },
-                    {
-                        "type": "text",
-                        "text": "備註: 帳  密"
+                        "text": "服務啟用狀態:"+str(statusdata[2])
                     },
                     {
                         "type": "box",
@@ -815,7 +805,7 @@ class roomlable():
                                 "action": {
                                 "type": "uri",
                                 "label": "前往Ceph",
-                                "uri": "http://linecorp.com/"
+                                "uri": "http://192.168.3.1:7000"
                                 },
                                 "color": "#FFFFFF"
                             }
@@ -832,20 +822,17 @@ class roomlable():
                     "contents": [
                     {
                         "type": "text",
-                        "text": "服務名稱:",
-                        "size": "lg"
+                        "text": "服務名稱:"+ str(namedata[3]),
+                        "size": "lg",
+                        "color": "#0367D3"
                     },
                     {
                         "type": "text",
-                        "text": "服務網址:"
+                        "text": "服務網址:"+ str(urldata[3])
                     },
                     {
                         "type": "text",
-                        "text": "服務啟用狀態:"
-                    },
-                    {
-                        "type": "text",
-                        "text": "備註: 帳  密"
+                        "text": "服務啟用狀態:"+str(statusdata[3])
                     },
                     {
                         "type": "box",
@@ -860,7 +847,7 @@ class roomlable():
                                 "action": {
                                 "type": "uri",
                                 "label": "前往機房環控分析系統",
-                                "uri": "http://linecorp.com/"
+                                "uri": "http://10.0.0.80:3004"
                                 },
                                 "color": "#FFFFFF"
                             }
@@ -877,20 +864,17 @@ class roomlable():
                     "contents": [
                     {
                         "type": "text",
-                        "text": "服務名稱:",
-                        "size": "lg"
+                        "text": "服務名稱:"+ str(namedata[4]),
+                        "size": "lg",
+                        "color": "#0367D3"
                     },
                     {
                         "type": "text",
-                        "text": "服務網址:"
+                        "text": "服務網址:"+ str(urldata[4])
                     },
                     {
                         "type": "text",
-                        "text": "服務啟用狀態:"
-                    },
-                    {
-                        "type": "text",
-                        "text": "備註: 帳  密"
+                        "text": "服務啟用狀態:"+str(statusdata[4])
                     },
                     {
                         "type": "box",
@@ -905,7 +889,7 @@ class roomlable():
                                 "action": {
                                 "type": "uri",
                                 "label": "前往Elastsearch Dashboard",
-                                "uri": "http://linecorp.com/"
+                                "uri": "http://10.0.0.80:9200/_plugin/head"
                                 },
                                 "color": "#FFFFFF"
                             }
@@ -922,20 +906,21 @@ class roomlable():
                     "contents": [
                     {
                         "type": "text",
-                        "text": "服務名稱:",
-                        "size": "lg"
+                        "text": "服務名稱:"+ str(namedata[5]),
+                        "size": "lg",
+                        "color": "#0367D3"
                     },
                     {
                         "type": "text",
-                        "text": "服務網址:"
+                        "text": "服務網址:"+ str(urldata[5])
                     },
                     {
                         "type": "text",
-                        "text": "服務啟用狀態:"
+                        "text": "服務啟用狀態:"+str(statusdata[5])
                     },
                     {
                         "type": "text",
-                        "text": "備註: 帳  密"
+                        "text": "備註:"+ str(accpasdata[5])
                     },
                     {
                         "type": "box",
@@ -950,7 +935,7 @@ class roomlable():
                                 "action": {
                                 "type": "uri",
                                 "label": "前往CORD",
-                                "uri": "http://linecorp.com/"
+                                "uri": "http://10.0.0.232:30001"
                                 },
                                 "color": "#FFFFFF"
                             }
@@ -967,20 +952,17 @@ class roomlable():
                     "contents": [
                     {
                         "type": "text",
-                        "text": "服務名稱:",
-                        "size": "lg"
+                        "text": "服務名稱:"+ str(namedata[6]),
+                        "size": "lg",
+                        "color": "#0367D3"
                     },
                     {
                         "type": "text",
-                        "text": "服務網址:"
+                        "text": "服務網址:"+ str(urldata[6])
                     },
                     {
                         "type": "text",
-                        "text": "服務啟用狀態:"
-                    },
-                    {
-                        "type": "text",
-                        "text": "備註: 帳  密"
+                        "text": "服務啟用狀態:"+str(statusdata[6])
                     },
                     {
                         "type": "box",
@@ -995,7 +977,7 @@ class roomlable():
                                 "action": {
                                 "type": "uri",
                                 "label": "前往 smart-data-center",
-                                "uri": "http://linecorp.com/"
+                                "uri": "http://10.20.0.19:3006"
                                 },
                                 "color": "#FFFFFF"
                             }
@@ -1012,20 +994,17 @@ class roomlable():
                     "contents": [
                     {
                         "type": "text",
-                        "text": "服務名稱:",
-                        "size": "lg"
+                        "text": "服務名稱:"+ str(namedata[7]),
+                        "size": "lg",
+                        "color": "#0367D3"
                     },
                     {
                         "type": "text",
-                        "text": "服務網址:"
+                        "text": "服務網址:"+ str(urldata[7])
                     },
                     {
                         "type": "text",
-                        "text": "服務啟用狀態:"
-                    },
-                    {
-                        "type": "text",
-                        "text": "備註: 帳  密"
+                        "text": "服務啟用狀態:"+str(statusdata[7])
                     },
                     {
                         "type": "box",
@@ -1040,7 +1019,7 @@ class roomlable():
                                 "action": {
                                 "type": "uri",
                                 "label": "前往 S3 Portal",
-                                "uri": "http://linecorp.com/"
+                                "uri": "http://10.20.0.21:30081/bucket/Log"
                                 },
                                 "color": "#FFFFFF"
                             }
@@ -1057,20 +1036,17 @@ class roomlable():
                     "contents": [
                     {
                         "type": "text",
-                        "text": "服務名稱:",
-                        "size": "lg"
+                        "text": "服務名稱:"+ str(namedata[8]),
+                        "size": "lg",
+                        "color": "#0367D3"
                     },
                     {
                         "type": "text",
-                        "text": "服務網址:"
+                        "text": "服務網址:"+ str(urldata[8])
                     },
                     {
                         "type": "text",
-                        "text": "服務啟用狀態:"
-                    },
-                    {
-                        "type": "text",
-                        "text": "備註: 帳  密"
+                        "text": "服務啟用狀態:"+str(statusdata[8])
                     },
                     {
                         "type": "box",
@@ -1085,7 +1061,305 @@ class roomlable():
                                 "action": {
                                 "type": "uri",
                                 "label": "前往  Grafana-ups_route_current",
-                                "uri": "http://linecorp.com/"
+                                "uri": "http://10.0.0.227:3000/playlists/play/1?kiosk."
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:"+ str(namedata[9]),
+                        "size": "lg",
+                        "color": "#0367D3"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:"+ str(urldata[9])
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:"+str(statusdata[9])
+                    },
+                    {
+                        "type": "text",
+                        "text": "備註:"+ str(accpasdata[9])
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往 Lora vehicle platform",
+                                "uri": "http://211.20.7.116:38885/"
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:"+ str(namedata[10]),
+                        "size": "lg",
+                        "color": "#0367D3"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:"+ str(urldata[10])
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:"+str(statusdata[10])
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往 Private Ethereum",
+                                "uri": "http://10.20.0.68:3000/"
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:"+ str(namedata[11]),
+                        "size": "lg",
+                        "color": "#0367D3"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:"+ str(urldata[11])
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:"+str(statusdata[11])
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往 Tensorboard",
+                                "uri": "http://10.0.0.131:6006"
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:"+ str(namedata[12]),
+                        "size": "lg",
+                        "color": "#0367D3"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:"+ str(urldata[12])
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:"+str(statusdata[12])
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往 RTMP",
+                                "uri": "http://10.0.0.149:5000"
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:"+ str(namedata[13]),
+                        "size": "lg",
+                        "color": "#0367D3"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:"+ str(urldata[13])
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:"+str(statusdata[13])
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往 大台灣旅遊網",
+                                "uri": "http://10.20.0.21"
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:"+ str(namedata[14]),
+                        "size": "lg",
+                        "color": "#0367D3"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:"+ str(urldata[14])
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:"+str(statusdata[14])
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往 spark",
+                                "uri": "http://10.0.0.202/transfor.php"
+                                },
+                                "color": "#FFFFFF"
+                            }
+                            ],
+                            "backgroundColor": "#FFA500"
+                        }
+                        ]
+                    }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "服務名稱:"+ str(namedata[15]),
+                        "size": "lg",
+                        "color": "#0367D3"
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務網址:"+ str(urldata[15])
+                    },
+                    {
+                        "type": "text",
+                        "text": "服務啟用狀態:"+str(statusdata[15])
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                "type": "uri",
+                                "label": "前往 Harbor",
+                                "uri": "https://registry.nutc-imac.com"
                                 },
                                 "color": "#FFFFFF"
                             }
