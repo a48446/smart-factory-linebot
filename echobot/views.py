@@ -9,7 +9,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
-from .message import Featuresmodel , returnvalue  , controlwind , roomlable
+from .message import Featuresmodel , returnvalue  , controlwind , roomlable , roomResourceslable , Dailynews
 
 line_bot_api = LineBotApi('q7TWa/81a0nmW9GnqF6+u8qaFoMbi6q3Dq5VK2QM7FV8UIx3nQk5+luk5GpASk/bm5qtAmimAyA2/Ifdg6a0hH3dwMdfdAoRiGE8TF/IiRXriLsK7j9FDHlQUC34zr7EXiktLqyT5btGhtCTJXbTZQdB04t89/1O/w1cDnyilFU=')
 parser = WebhookParser("57141ec8f7ba725d4fa3fa97a5bd5169")
@@ -29,7 +29,7 @@ def callback(request):
             return HttpResponseBadRequest()
 
         for event in events:
-            if isinstance(event, MessageEvent):  # 如果有訊息事件
+            if isinstance(event, MessageEvent):  # 如果有normal訊息事件
 
                 if event.message.text == "功能列表":
                 
@@ -45,12 +45,48 @@ def callback(request):
                     )
                 if event.message.text == "機房服務列表":
                 
-                    line_bot_api.reply_message(  # 回復「控制」按鈕輪播訊息
+                    line_bot_api.reply_message(  # 回復「機房服務列表」按鈕輪播訊息
                         event.reply_token,
                         roomlable().returna()
                     )
+                if event.message.text == "設定機房資訊": ##
+                
+                    line_bot_api.reply_message(  # 回復「設定機房資訊」按鈕輪播訊息
+                        event.reply_token,
+                        returnvalue().roomva()
+                    )
+                if event.message.text == "查看設定結果":
+                
+                    line_bot_api.reply_message(  # 回復「查看設定結果」按鈕輪播訊息
+                        event.reply_token,
+                        roomlable().returna()
+                    )
+                if event.message.text == "機房資訊":
+                
+                    line_bot_api.reply_message(  # 回復「機房資訊」按鈕輪播訊息
+                        event.reply_token,
+                        roomResourceslable().returna()
+                    )
+                if event.message.text == "每日通報資訊":
+                
+                    line_bot_api.reply_message(  # 回復「每日通報資訊」按鈕輪播訊息
+                        event.reply_token,
+                        Dailynews().returna()
+                    )
+                if event.message.text == "機房服務列表":
+                
+                    line_bot_api.reply_message(  # 回復「機房服務列表」按鈕輪播訊息
+                        event.reply_token,
+                        roomlable().returna()
+                    )
+                if event.message.text == "電錶度數":
+                
+                    line_bot_api.reply_message(  # 回復「機房服務列表」按鈕輪播訊息
+                        event.reply_token,
+                        returnvalue().roomva()
+                    )
 
-            elif isinstance(event, PostbackEvent):  # 如果有訊息回傳
+            elif isinstance(event, PostbackEvent):  # 如果有postback訊息回傳
                 # 電流
                 if event.postback.data[0] == "電" and event.postback.data[1] == '流':  # 如果回傳值為「電流」
 
@@ -74,48 +110,8 @@ def callback(request):
                         event.reply_token,
                         TextSendMessage(text=returnvalue().temp())
                     )
-
-                # 設定機房資訊
-                elif event.postback.data[0] == "設" and event.postback.data[1] == '定': 
                 
-                    line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text=returnvalue().setroomdata())
-                    )    
 
-                # 查看機房資訊
-                elif event.postback.data[0] == "查" and event.postback.data[5] == '訊': 
-                    
-                    line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text=returnvalue().watchroomdata(),color='#054E9F')
-                    )
-
-                # 機房資訊
-                elif event.postback.data[0] == "機" and event.postback.data[2] == '資': 
-                    
-                    line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text=returnvalue().roomdata())
-                    )
-
-                # 每日通報資訊
-                elif event.postback.data[0] == "每" and event.postback.data[1] == '日': 
-                    
-                    line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text=returnvalue().Dailynews())
-                    )
-
-                # 機房服務列表
-                elif event.postback.data[2] == "服" and event.postback.data[3] == '務': 
-
-                    line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text=roomlable().returna())
-                    )
-
-                
         return HttpResponse()
     else:
         return HttpResponseBadRequest()
