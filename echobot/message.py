@@ -272,9 +272,9 @@ class returnvalue():
 # 風扇輪播按鈕訊息
 class controlwind():
     def returna(self):
-        serviceList = []
-        for data in serviceListdata.find():
-            serviceList = data
+        controlprintdata = []
+        for data in controldata.find():
+            controlprintdata = data
         flex_message = FlexSendMessage(
             alt_text='hello',
             contents={
@@ -307,7 +307,7 @@ class controlwind():
                         "contents": [
                         {
                             "type": "text",
-                            "text": "狀態：" + serviceList["humidity"] ,
+                            "text": "狀態：" + str(controlprintdata["humidity"]) ,
                             "size": "xxs",
                             "color": "#8c8c8c",
                             "margin": "xs",
@@ -376,7 +376,7 @@ class controlwind():
                             "contents": [
                             {
                                 "type": "text",
-                                "text": "狀態："+ serviceList["inputFan"] ,
+                                "text": "狀態："+ str(controlprintdata["inputFan"]) ,
                                 "color": "#8c8c8c",
                                 "size": "xxs",
                                 "flex": 5
@@ -445,7 +445,7 @@ class controlwind():
                             "contents": [
                             {
                                 "type": "text",
-                                "text": "狀態："+ serviceList["outputFan"],
+                                "text": "狀態："+ str(controlprintdata["outputFan"]),
                                 "color": "#8c8c8c",
                                 "size": "xxs",
                                 "flex": 5

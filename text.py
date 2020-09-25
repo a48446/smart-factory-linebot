@@ -14,8 +14,7 @@ RoomInformationdata = db.computerRoomInformation
 serviceListdata = db.serviceList
 controldata = db.control
 
-message=''
-for Noticedata in RoomPowerdata.find():
-    message ="電錶今日度數:" + str(Noticedata["cameraPower"])+"(度)" +"\n"+ "最後更新時間:" + str(Noticedata["time"])+"\n"+"\n"+"電錶昨日消耗度數"+str(Noticedata["cameraPowerConsumption"])+"\n"+"計算起始時間："+"\n"+str(Noticedata["cameraStartTime"])+"\n"+"計算終止時間"+"\n"+str(Noticedata["cameraEndTime"])
-
-print(message)   
+controlprintdata = []
+for data in controldata.find():
+    controlprintdata = data
+print(controlprintdata)   
