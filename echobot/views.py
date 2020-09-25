@@ -81,7 +81,7 @@ def callback(request):
                     )
                 if event.message.text == "電錶度數":
                 
-                    line_bot_api.reply_message(  # 回復「機房服務列表」按鈕輪播訊息
+                    line_bot_api.reply_message(  # 回復「電錶度數」按鈕輪播訊息
                         event.reply_token,
                         returnvalue().roomva()
                     )
@@ -109,6 +109,13 @@ def callback(request):
                     line_bot_api.reply_message(
                         event.reply_token,
                         TextSendMessage(text=returnvalue().temp())
+                    )
+                # 電錶
+                elif event.postback.data[0] == "電" and event.postback.data[1] == '錶': 
+                    
+                    line_bot_api.reply_message(
+                        event.reply_token,
+                        TextSendMessage(text=returnvalue().roomva())
                     )
                 
 
