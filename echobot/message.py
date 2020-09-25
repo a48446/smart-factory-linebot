@@ -140,8 +140,10 @@ class Featuresmodel():
                         "type": "button",
                         "action": {
                         "type": "message",
-                        "label": "電錶度數",
-                        "text": "電錶度數"
+                        "type": "postback",
+                        "label": "電錶度數"",
+                        "data": "電錶度數",
+                        "displayText": "電錶度數"
                         },
                         "color": "#ffffff"
                     }
