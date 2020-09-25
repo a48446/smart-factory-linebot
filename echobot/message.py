@@ -141,7 +141,7 @@ class Featuresmodel():
                         "action": {
                         "type": "message",
                         "type": "postback",
-                        "label": "電錶度數"",
+                        "label": "電錶度數",
                         "data": "電錶度數",
                         "displayText": "電錶度數"
                         },
