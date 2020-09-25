@@ -79,13 +79,7 @@ def callback(request):
                         event.reply_token,
                         roomlable().returna()
                     )
-                if event.message.text == "電錶度數":
                 
-                    line_bot_api.reply_message(  # 回復「電錶度數」按鈕輪播訊息
-                        event.reply_token,
-                        returnvalue().roomva()
-                    )
-
             elif isinstance(event, PostbackEvent):  # 如果有postback訊息回傳
                 # 電流
                 if event.postback.data[0] == "電" and event.postback.data[1] == '流':  # 如果回傳值為「電流」
