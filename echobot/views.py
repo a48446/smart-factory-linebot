@@ -50,16 +50,16 @@ def callback(request):
                         roomlable().returna()
                     )
                 if event.message.text == "設定機房資訊": ##
-                
+                    message = '功能尚未完成'
                     line_bot_api.reply_message(  # 回復「設定機房資訊」按鈕輪播訊息
                         event.reply_token,
-                        returnvalue().roomva()
+                        message
                     )
                 if event.message.text == "查看設定結果":
-                
+                    message = '功能尚未完成'
                     line_bot_api.reply_message(  # 回復「查看設定結果」按鈕輪播訊息
                         event.reply_token,
-                        roomlable().returna()
+                        message
                     )
                 if event.message.text == "機房資訊":
                 
