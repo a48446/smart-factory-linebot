@@ -52,36 +52,37 @@ def callback(request):
                 if event.message.text == "設定機房資訊": ##
                     data_objectid = '5e61ca5964e2e44b2dabd5ea'
                     if data_objectid == '5e61ca5964e2e44b2dabd5ea':
+
                         VCPUnewvalue = input("請輸入VCPU數量(顆): ")
                         line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
                             event.reply_token,
                             roomset().returna()
                         )
-                        if event.message.text == "yes":
-                            myquery = { "_id": ObjectId(data_objectid)}
-                            newvalues = { "$set": { 
-                                            "disk":VCPUnewvalue
-                                                }
-                                            }
-                            RoomInformationdata.update_one(myquery, newvalues)
-                            RAMnewvalue = input("請輸入RAM數量(GB): ")
-                            if RAMnewvalue != None:
-                                line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
-                                    event.reply_token,
-                                    roomset().returnb()
-                                )
-                                if event.message.text == "yes":
-                                    myquery = { "_id": ObjectId(data_objectid)}
-                                    newvalues = { "$set": { 
-                                                    "ram":RAMnewvalue
-                                                        }
-                                                    }
-                                    RoomInformationdata.update_one(myquery, newvalues)
-                                else:
-                                    RAMnewvalue = input("請輸入RAM數量(GB): ")
-                        else:
-                            VCPUnewvalue = input("請輸入VCPU數量(顆): ")
-                            
+                        # if event.message.text == "yes":
+                        #     myquery = { "_id": ObjectId(data_objectid)}
+                        #     newvalues = { "$set": { 
+                        #                     "disk":VCPUnewvalue
+                        #                         }
+                        #                     }
+                        #     RoomInformationdata.update_one(myquery, newvalues)
+                        #     RAMnewvalue = input("請輸入RAM數量(GB): ")
+                        # #     if RAMnewvalue != None:
+                        #         line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
+                        #             event.reply_token,
+                        #             roomset().returnb()
+                        #         )
+                        #         if event.message.text == "yes":
+                        #             myquery = { "_id": ObjectId(data_objectid)}
+                        #             newvalues = { "$set": { 
+                        #                             "ram":RAMnewvalue
+                        #                                 }
+                        #                             }
+                        #             RoomInformationdata.update_one(myquery, newvalues)
+                        #         else:
+                        #             RAMnewvalue = input("請輸入RAM數量(GB): ")
+                        # else:
+                        #     VCPUnewvalue = input("請輸入VCPU數量(顆): ")
+
                 if event.message.text == "查看設定結果":
                     
                     line_bot_api.reply_message(  # 回復「查看設定結果」按鈕輪播訊息
