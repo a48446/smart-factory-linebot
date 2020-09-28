@@ -1578,8 +1578,6 @@ class roomset():
 # 設定輸入回傳
 class inputreturn():
     def returna(self):
-        
-
         flex_message = FlexSendMessage(
             alt_text='hello',
             contents={
@@ -1590,7 +1588,12 @@ class inputreturn():
                 "contents": [
                 {
                     "type": "text",
+                    "text": "請輸入VCPU數量(顆)：",
+                    "action": {
+                    "type": "message",
+                    "label": "請輸入VCPU數量(顆)：",
                     "text": "請輸入VCPU數量(顆)："
+                    }
                 }
                 ]
             }
