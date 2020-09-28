@@ -1590,9 +1590,10 @@ class inputreturn():
                     "type": "text",
                     "text": "請輸入VCPU數量(顆)：",
                     "action": {
-                    "type": "message",
+                    "type": "postback",
                     "label": "請輸入VCPU數量(顆)：",
-                    "text": "請輸入VCPU數量(顆)："
+                    "data": "請輸入VCPU數量(顆)：",
+                    "displayText": "請輸入VCPU數量(顆)："
                     }
                 }
                 ]
