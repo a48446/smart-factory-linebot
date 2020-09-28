@@ -58,20 +58,18 @@ def callback(request):
                     line_bot_api.reply_message(
                         event.reply_token,
                         message)
-                    if 1:
-                        VCPUnewvalue = []
-                        VCPUnewvalue = input('abc')
-                        line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
-                            event.reply_token,
-                            returna
-                        )
-                        if event.message.text == "yes":
-                            myquery = { "_id": ObjectId(data_objectid)}
-                            newvalues = { "$set": { 
-                                            "disk":VCPUnewvalue
-                                                }
+                    VCPUnewvalue = event.message.text
+                    line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
+                        event.reply_token,
+                        returna
+                    )
+                    if event.message.text == "yes":
+                        myquery = { "_id": ObjectId(data_objectid)}
+                        newvalues = { "$set": { 
+                                        "disk":VCPUnewvalue
                                             }
-                            RoomInformationdata.update_one(myquery, newvalues)
+                                        }
+                        RoomInformationdata.update_one(myquery, newvalues)
                             # RAMnewvalue = input("請輸入RAM數量(GB): ")
                         # #     if RAMnewvalue != None:
                         #         line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
