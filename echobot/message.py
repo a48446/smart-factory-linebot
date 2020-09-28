@@ -1498,7 +1498,7 @@ class roomset():
                         "action": {
                         "type": "message",
                         "label": "yes",
-                        "text": "yes"+'\n'+"接著設定機房資訊"+'\n'+'機房儲存空間(TB)'
+                        "text": "yes"
                         },
                         "position": "absolute",
                         "offsetStart": "20px"
@@ -1518,7 +1518,7 @@ class roomset():
                 ]
             }
             }
-        )
+        ) 
         return flex_message
 
     # def returnb(self):
