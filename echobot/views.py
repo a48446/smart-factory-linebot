@@ -4,12 +4,12 @@ from bson.objectid import ObjectId
 from datetime import datetime
 from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError, LineBotApiError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage ,TemplateSendMessage,ButtonsTemplate,MessageTemplateAction,PostbackEvent
+from linebot.models import MessageEvent, TextMessage, TextSendMessage ,TemplateSendMessage,ButtonsTemplate,MessageTemplateAction,PostbackEvent , FlexSendMessage
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
-from .message import Featuresmodel , returnvalue  , controlwind , roomlable , roomResourceslable , Dailynews
+from .message import Featuresmodel , returnvalue  , controlwind , roomlable , roomResourceslable , Dailynews , db
 
 
 line_bot_api = LineBotApi('q7TWa/81a0nmW9GnqF6+u8qaFoMbi6q3Dq5VK2QM7FV8UIx3nQk5+luk5GpASk/bm5qtAmimAyA2/Ifdg6a0hH3dwMdfdAoRiGE8TF/IiRXriLsK7j9FDHlQUC34zr7EXiktLqyT5btGhtCTJXbTZQdB04t89/1O/w1cDnyilFU=')
@@ -51,26 +51,26 @@ def callback(request):
                         roomlable().returna()
                     )
                 if event.message.text == "設定機房資訊": ##
+                    RoomInformationdata = db.computerRoomInformation
                     data_objectid = '5e61ca5964e2e44b2dabd5ea'
                     outInfo = "請輸入VCPU數量(顆):"
                     message = TextSendMessage(text=outInfo)
                     line_bot_api.reply_message(
                         event.reply_token,
                         message)
-                    
-                    # if 1:
-                    #     VCPUnewvalue = event.message.text
-                    #     line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
-                    #         event.reply_token,
-                    #         roomset().returna()
-                    #     )
-                    #     if event.message.text == "yes":
-                    #         myquery = { "_id": ObjectId(data_objectid)}
-                    #         newvalues = { "$set": { 
-                    #                         "disk":VCPUnewvalue
-                    #                             }
-                    #                         }
-                    #         RoomInformationdata.update_one(myquery, newvalues)
+                    if 1:
+                        VCPUnewvalue = event.message.text
+                        line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
+                            event.reply_token,
+                            returna
+                        )
+                        if event.message.text == "yes":
+                            myquery = { "_id": ObjectId(data_objectid)}
+                            newvalues = { "$set": { 
+                                            "disk":VCPUnewvalue
+                                                }
+                                            }
+                            RoomInformationdata.update_one(myquery, newvalues)
                             # RAMnewvalue = input("請輸入RAM數量(GB): ")
                         # #     if RAMnewvalue != None:
                         #         line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
@@ -149,6 +149,121 @@ def callback(request):
         return HttpResponse()
     else:
         return HttpResponseBadRequest()
+
+# 設定機房資訊回傳
+def returna(self):
+    flex_message = FlexSendMessage(
+        alt_text='hello',
+        contents={
+        "type": "bubble",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+            {
+                "type": "text",
+                "text": "VCPU數量(顆):"+ callback('VCPUnewvalue')
+            }
+            ],
+            "backgroundColor": "#F0F0F0"
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": []
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "button",
+                    "action": {
+                    "type": "message",
+                    "label": "yes",
+                    "text": "yes"+'\n'+"接著設定機房資訊"+'\n'+'機房儲存空間(TB)'
+                    },
+                    "position": "absolute",
+                    "offsetStart": "20px"
+                },
+                {
+                    "type": "button",
+                    "action": {
+                    "type": "message",
+                    "label": "no",
+                    "text": "no"
+                    },
+                    "position": "relative",
+                    "offsetStart": "70px"
+                }
+                ]
+            }
+            ]
+        }
+        }
+    )
+    return flex_message
+
+def returnb(self):
+    flex_message = FlexSendMessage(
+        alt_text='hello',
+        contents={
+        "type": "bubble",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+            {
+                "type": "text",
+                "text": "RAM數量(GB):"+callback('RAMnewvalue')
+            }
+            ],
+            "backgroundColor": "#F0F0F0"
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": []
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "button",
+                    "action": {
+                    "type": "message",
+                    "label": "yes",
+                    "text": "yes"+'\n'+"接著設定機房資訊"+'\n'+'機房Switch數量(台)'
+                    },
+                    "position": "absolute",
+                    "offsetStart": "20px"
+                },
+                {
+                    "type": "button",
+                    "action": {
+                    "type": "message",
+                    "label": "no",
+                    "text": "no"
+                    },
+                    "position": "relative",
+                    "offsetStart": "70px"
+                }
+                ]
+            }
+            ]
+        }
+        }
+    )
+    return flex_message 
 
 # @csrf_exempt
 # def callback(request):
