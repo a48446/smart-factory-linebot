@@ -1465,6 +1465,8 @@ class Dailynews():
 # 設定機房資訊回傳
 class roomset():
     def returna(self):
+        
+            
         flex_message = FlexSendMessage(
             alt_text='hello',
             contents={
@@ -1518,7 +1520,7 @@ class roomset():
                 ]
             }
             }
-        ) 
+        )
         return flex_message
 
     # def returnb(self):
