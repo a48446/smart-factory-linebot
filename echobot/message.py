@@ -3,7 +3,6 @@ from abc import ABC, abstractmethod
 from linebot.models import TemplateSendMessage , ButtonsTemplate, PostbackAction , MessageAction , URIAction , CarouselColumn , CarouselTemplate , PostbackTemplateAction , FlexSendMessage
 from pymongo import MongoClient
 from bs4 import BeautifulSoup
-from views import callback
 
 client = MongoClient("mongodb://nutc.iot:nutciot5891@ds237922.mlab.com:37922/smart-data-center")
 db = client["smart-data-center"]
