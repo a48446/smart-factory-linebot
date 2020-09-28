@@ -53,11 +53,11 @@ def callback(request):
                 if event.message.text == "設定機房資訊": ##
                     RoomInformationdata = db.computerRoomInformation
                     data_objectid = '5e61ca5964e2e44b2dabd5ea'
-                    outInfo = "請輸入VCPU數量(顆):"
-                    message = TextSendMessage(text=outInfo)
-                    line_bot_api.reply_message(
-                        event.reply_token,
-                        message)
+                    # outInfo = "請輸入VCPU數量(顆):"
+                    # message = TextSendMessage(text=outInfo)
+                    # line_bot_api.reply_message(
+                    #     event.reply_token,
+                    #     message)
                     VCPUnewvalue = 10
                     flex_message = FlexSendMessage(
                         alt_text='hello',
