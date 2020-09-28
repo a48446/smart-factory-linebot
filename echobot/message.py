@@ -1466,7 +1466,7 @@ class Dailynews():
 class roomset():
     def returna(self):
         
-            
+
         flex_message = FlexSendMessage(
             alt_text='hello',
             contents={
@@ -1574,3 +1574,26 @@ class roomset():
     #         }
     #     )
     #     return flex_message 
+
+# 設定輸入回傳
+class inputreturn():
+    def returna(self):
+        
+
+        flex_message = FlexSendMessage(
+            alt_text='hello',
+            contents={
+            "type": "bubble",
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": "請輸入VCPU數量(顆)："
+                }
+                ]
+            }
+            }
+        )
+        return flex_message
