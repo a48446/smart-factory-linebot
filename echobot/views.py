@@ -51,79 +51,19 @@ def callback(request):
                         roomlable().returna()
                     )
                 if event.message.text == "設定機房資訊": ##
-                    RoomInformationdata = db.computerRoomInformation
-                    data_objectid = '5e61ca5964e2e44b2dabd5ea'
-                    # outInfo = "請輸入VCPU數量(顆):"
-                    # message = TextSendMessage(text=outInfo)
-                    # line_bot_api.reply_message(
-                    #     event.reply_token,
-                    #     message)
-                    VCPUnewvalue = 10
-                    flex_message = FlexSendMessage(
-                        alt_text='hello',
-                        contents={
-                        "type": "bubble",
-                        "header": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [
-                            {
-                                "type": "text",
-                                "text": "VCPU數量(顆):" + VCPUnewvalue
-                            }
-                            ],
-                            "backgroundColor": "#F0F0F0"
-                        },
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [
-                            {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": []
-                            },
-                            {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "message",
-                                    "label": "yes",
-                                    "text": "yes"+'\n'+"接著設定機房資訊"+'\n'+'機房儲存空間(TB)'
-                                    },
-                                    "position": "absolute",
-                                    "offsetStart": "20px"
-                                },
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "message",
-                                    "label": "no",
-                                    "text": "no"
-                                    },
-                                    "position": "relative",
-                                    "offsetStart": "70px"
-                                }
-                                ]
-                            }
-                            ]
-                        }
-                        }
-                        )
+                    # RoomInformationdata = db.computerRoomInformation
+                    # data_objectid = '5e61ca5964e2e44b2dabd5ea'
                     line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
                         event.reply_token,
-                        flex_message
+                        returna
                         )
-                    if event.message.text == "yes":
-                        myquery = { "_id": ObjectId(data_objectid)}
-                        newvalues = { "$set": { 
-                                        "disk":VCPUnewvalue
-                                            }
-                                        }
-                        RoomInformationdata.update_one(myquery, newvalues)
+                    # if event.message.text == "yes":
+                    #     myquery = { "_id": ObjectId(data_objectid)}
+                    #     newvalues = { "$set": { 
+                    #                     "disk":VCPUnewvalue
+                    #                         }
+                    #                     }
+                    #     RoomInformationdata.update_one(myquery, newvalues)
                             # RAMnewvalue = input("請輸入RAM數量(GB): ")
                         # #     if RAMnewvalue != None:
                         #         line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
@@ -203,63 +143,63 @@ def callback(request):
     else:
         return HttpResponseBadRequest()
 
-# 設定機房資訊回傳
-# def returna(self):
-#     flex_message = FlexSendMessage(
-#         alt_text='hello',
-#         contents={
-#         "type": "bubble",
-#         "header": {
-#             "type": "box",
-#             "layout": "vertical",
-#             "contents": [
-#             {
-#                 "type": "text",
-#                 "text": "VCPU數量(顆):" + 
-#             }
-#             ],
-#             "backgroundColor": "#F0F0F0"
-#         },
-#         "body": {
-#             "type": "box",
-#             "layout": "vertical",
-#             "contents": [
-#             {
-#                 "type": "box",
-#                 "layout": "vertical",
-#                 "contents": []
-#             },
-#             {
-#                 "type": "box",
-#                 "layout": "vertical",
-#                 "contents": [
-#                 {
-#                     "type": "button",
-#                     "action": {
-#                     "type": "message",
-#                     "label": "yes",
-#                     "text": "yes"+'\n'+"接著設定機房資訊"+'\n'+'機房儲存空間(TB)'
-#                     },
-#                     "position": "absolute",
-#                     "offsetStart": "20px"
-#                 },
-#                 {
-#                     "type": "button",
-#                     "action": {
-#                     "type": "message",
-#                     "label": "no",
-#                     "text": "no"
-#                     },
-#                     "position": "relative",
-#                     "offsetStart": "70px"
-#                 }
-#                 ]
-#             }
-#             ]
-#         }
-#         }
-#     )
-#     return flex_message
+
+def returna(self):
+    flex_message = FlexSendMessage(
+        alt_text='hello',
+        contents={
+        "type": "bubble",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+            {
+                "type": "text",
+                "text": "VCPU數量(顆):"
+            }
+            ],
+            "backgroundColor": "#F0F0F0"
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": []
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "button",
+                    "action": {
+                    "type": "message",
+                    "label": "yes",
+                    "text": "yes"+'\n'+"接著設定機房資訊"+'\n'+'機房儲存空間(TB)'
+                    },
+                    "position": "absolute",
+                    "offsetStart": "20px"
+                },
+                {
+                    "type": "button",
+                    "action": {
+                    "type": "message",
+                    "label": "no",
+                    "text": "no"
+                    },
+                    "position": "relative",
+                    "offsetStart": "70px"
+                }
+                ]
+            }
+            ]
+        }
+        }
+    )
+    return flex_message
 
 # def returnb(self):
 #     flex_message = FlexSendMessage(
