@@ -50,6 +50,7 @@ def callback(request):
                         event.reply_token,
                         roomlable().returna()
                     )
+                
                 if event.message.text == "設定機房資訊": ##
                     RoomInformationdata = db.computerRoomInformation
                     data_objectid = '5e61ca5964e2e44b2dabd5ea'
@@ -58,7 +59,7 @@ def callback(request):
                     line_bot_api.reply_message(
                         event.reply_token,
                         message)
-                    if event.message.text != None:
+                    try:    
                         VCPUnewvalue = event.message.text 
                         flex_message = FlexSendMessage(
                             alt_text='hello',
@@ -138,6 +139,9 @@ def callback(request):
                         # else:
                         #     VCPUnewvalue = input("請輸入VCPU數量(顆): ")
 
+                    except:
+                        return
+                        
                 if event.message.text == "查看設定結果":
                     
                     line_bot_api.reply_message(  # 回復「查看設定結果」按鈕輪播訊息
