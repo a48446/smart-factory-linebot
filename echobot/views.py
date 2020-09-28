@@ -9,7 +9,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
-from .message import Featuresmodel , returnvalue  , controlwind , roomlable , roomResourceslable , Dailynews , roomset
+from .message import Featuresmodel , returnvalue  , controlwind , roomlable , roomResourceslable , Dailynews , roomset , db
 
 
 line_bot_api = LineBotApi('q7TWa/81a0nmW9GnqF6+u8qaFoMbi6q3Dq5VK2QM7FV8UIx3nQk5+luk5GpASk/bm5qtAmimAyA2/Ifdg6a0hH3dwMdfdAoRiGE8TF/IiRXriLsK7j9FDHlQUC34zr7EXiktLqyT5btGhtCTJXbTZQdB04t89/1O/w1cDnyilFU=')
@@ -51,19 +51,69 @@ def callback(request):
                         roomlable().returna()
                     )
                 if event.message.text == "設定機房資訊": ##
-                    # RoomInformationdata = db.computerRoomInformation
-                    # data_objectid = '5e61ca5964e2e44b2dabd5ea'
+                    RoomInformationdata = db.computerRoomInformation
+                    data_objectid = '5e61ca5964e2e44b2dabd5ea'
+                    VCPUnewvalue = event.message.text 
+                    flex_message = FlexSendMessage(
+                        alt_text='hello',
+                        contents={
+                        "type": "bubble",
+                        "header": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "text",
+                                "text": "VCPU數量(顆):" + VCPUnewvalue
+                            }
+                            ],
+                            "backgroundColor": "#F0F0F0"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                {
+                                    "type": "button",
+                                    "action": {
+                                    "type": "message",
+                                    "label": "yes",
+                                    "text": "yes"
+                                    },
+                                    "position": "absolute",
+                                    "offsetStart": "20px"
+                                },
+                                {
+                                    "type": "button",
+                                    "action": {
+                                    "type": "message",
+                                    "label": "no",
+                                    "text": "no"
+                                    },
+                                    "position": "relative",
+                                    "offsetStart": "70px"
+                                }
+                                ]
+                            }
+                            ]
+                        }
+                        }
+                    )
                     line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
                         event.reply_token,
-                        roomset().returna()
+                        flex_message
                         )
-                    # if event.message.text == "yes":
-                    #     myquery = { "_id": ObjectId(data_objectid)}
-                    #     newvalues = { "$set": { 
-                    #                     "disk":VCPUnewvalue
-                    #                         }
-                    #                     }
-                    #     RoomInformationdata.update_one(myquery, newvalues)
+                    if event.message.text == "yes":
+                        myquery = { "_id": ObjectId(data_objectid)}
+                        newvalues = { "$set": { 
+                                        "disk":VCPUnewvalue
+                                            }
+                                        }
+                        RoomInformationdata.update_one(myquery, newvalues)
                             # RAMnewvalue = input("請輸入RAM數量(GB): ")
                         # #     if RAMnewvalue != None:
                         #         line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
