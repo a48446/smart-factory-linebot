@@ -9,7 +9,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
-from .message import Featuresmodel , returnvalue  , controlwind , roomlable , roomResourceslable , Dailynews  
+from .message import Featuresmodel , returnvalue  , controlwind , roomlable , roomResourceslable , Dailynews  , roomset , RoomInformationdata
 
 
 line_bot_api = LineBotApi('q7TWa/81a0nmW9GnqF6+u8qaFoMbi6q3Dq5VK2QM7FV8UIx3nQk5+luk5GpASk/bm5qtAmimAyA2/Ifdg6a0hH3dwMdfdAoRiGE8TF/IiRXriLsK7j9FDHlQUC34zr7EXiktLqyT5btGhtCTJXbTZQdB04t89/1O/w1cDnyilFU=')
@@ -50,23 +50,28 @@ def callback(request):
                         event.reply_token,
                         roomlable().returna()
                     )
-                # if event.message.text == "設定機房資訊": ##
-                    # data_objectid = '5e61ca5964e2e44b2dabd5ea'
-                    # if data_objectid == '5e61ca5964e2e44b2dabd5ea':
-
-                    #     VCPUnewvalue = input("請輸入VCPU數量(顆): ")
-                    #     line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
-                    #         event.reply_token,
-                    #         roomset().returna()
-                    #     )
-                        # if event.message.text == "yes":
-                        #     myquery = { "_id": ObjectId(data_objectid)}
-                        #     newvalues = { "$set": { 
-                        #                     "disk":VCPUnewvalue
-                        #                         }
-                        #                     }
-                        #     RoomInformationdata.update_one(myquery, newvalues)
-                        #     RAMnewvalue = input("請輸入RAM數量(GB): ")
+                if event.message.text == "設定機房資訊": ##
+                    data_objectid = '5e61ca5964e2e44b2dabd5ea'
+                    outInfo = "請輸入VCPU數量(顆):"
+                    message = TextSendMessage(text=outInfo)
+                    line_bot_api.reply_message(
+                        event.reply_token,
+                        message)
+                    
+                    if 1:
+                        VCPUnewvalue = event.message.text
+                        line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
+                            event.reply_token,
+                            roomset().returna()
+                        )
+                        if event.message.text == "yes":
+                            myquery = { "_id": ObjectId(data_objectid)}
+                            newvalues = { "$set": { 
+                                            "disk":VCPUnewvalue
+                                                }
+                                            }
+                            RoomInformationdata.update_one(myquery, newvalues)
+                            # RAMnewvalue = input("請輸入RAM數量(GB): ")
                         # #     if RAMnewvalue != None:
                         #         line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
                         #             event.reply_token,
