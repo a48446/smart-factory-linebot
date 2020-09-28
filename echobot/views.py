@@ -58,7 +58,7 @@ def callback(request):
                     line_bot_api.reply_message(
                         event.reply_token,
                         message)
-                    if event.message.text == "請輸入":
+                    if event.message.text != None:
                         VCPUnewvalue = event.message.text 
                         flex_message = FlexSendMessage(
                             alt_text='hello',
