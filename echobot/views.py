@@ -50,13 +50,13 @@ def callback(request):
                         event.reply_token,
                         roomlable().returna()
                     )
-                # if event.message.text == "設定機房資訊": ##
-                #     data_objectid = '5e61ca5964e2e44b2dabd5ea'
-                #     outInfo = "請輸入VCPU數量(顆):"
-                #     message = TextSendMessage(text=outInfo)
-                #     line_bot_api.reply_message(
-                #         event.reply_token,
-                #         message)
+                if event.message.text == "設定機房資訊": ##
+                    data_objectid = '5e61ca5964e2e44b2dabd5ea'
+                    outInfo = "請輸入VCPU數量(顆):"
+                    message = TextSendMessage(text=outInfo)
+                    line_bot_api.reply_message(
+                        event.reply_token,
+                        message)
                     
                     # if 1:
                     #     VCPUnewvalue = event.message.text
