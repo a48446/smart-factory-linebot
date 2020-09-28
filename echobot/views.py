@@ -53,7 +53,8 @@ def callback(request):
                 if event.message.text == "設定機房資訊": ##
                     RoomInformationdata = db.computerRoomInformation
                     data_objectid = '5e61ca5964e2e44b2dabd5ea'
-                    VCPUnewvalue = event.message.text 
+                    VCPUnewvalue = input("請輸入")
+                    # VCPUnewvalue = event.message.text 
                     flex_message = FlexSendMessage(
                         alt_text='hello',
                         contents={
