@@ -58,68 +58,68 @@ def callback(request):
                     line_bot_api.reply_message(
                         event.reply_token,
                         message)
-                        
-                    VCPUnewvalue = event.message.text 
-                    flex_message = FlexSendMessage(
-                        alt_text='hello',
-                        contents={
-                        "type": "bubble",
-                        "header": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [
-                            {
-                                "type": "text",
-                                "text": "VCPU數量(顆):" + VCPUnewvalue
-                            }
-                            ],
-                            "backgroundColor": "#F0F0F0"
-                        },
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [
-                            {
+                    if event.message.text == "請輸入"
+                        VCPUnewvalue = event.message.text 
+                        flex_message = FlexSendMessage(
+                            alt_text='hello',
+                            contents={
+                            "type": "bubble",
+                            "header": {
                                 "type": "box",
                                 "layout": "vertical",
                                 "contents": [
                                 {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "message",
-                                    "label": "yes",
-                                    "text": "yes"
-                                    },
-                                    "position": "absolute",
-                                    "offsetStart": "20px"
-                                },
+                                    "type": "text",
+                                    "text": "VCPU數量(顆):" + VCPUnewvalue
+                                }
+                                ],
+                                "backgroundColor": "#F0F0F0"
+                            },
+                            "body": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
                                 {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "message",
-                                    "label": "no",
-                                    "text": "no"
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                    {
+                                        "type": "button",
+                                        "action": {
+                                        "type": "message",
+                                        "label": "yes",
+                                        "text": "yes"
+                                        },
+                                        "position": "absolute",
+                                        "offsetStart": "20px"
                                     },
-                                    "position": "relative",
-                                    "offsetStart": "70px"
+                                    {
+                                        "type": "button",
+                                        "action": {
+                                        "type": "message",
+                                        "label": "no",
+                                        "text": "no"
+                                        },
+                                        "position": "relative",
+                                        "offsetStart": "70px"
+                                    }
+                                    ]
                                 }
                                 ]
                             }
-                            ]
-                        }
-                        }
-                    )
-                    line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
-                        event.reply_token,
-                        flex_message
+                            }
                         )
-                    if event.message.text == "yes":
-                        myquery = { "_id": ObjectId(data_objectid)}
-                        newvalues = { "$set": { 
-                                        "disk":VCPUnewvalue
+                        line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
+                            event.reply_token,
+                            flex_message
+                            )
+                        if event.message.text == "yes":
+                            myquery = { "_id": ObjectId(data_objectid)}
+                            newvalues = { "$set": { 
+                                            "disk":VCPUnewvalue
+                                                }
                                             }
-                                        }
-                        RoomInformationdata.update_one(myquery, newvalues)
+                            RoomInformationdata.update_one(myquery, newvalues)
                             # RAMnewvalue = input("請輸入RAM數量(GB): ")
                         # #     if RAMnewvalue != None:
                         #         line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
