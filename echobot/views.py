@@ -59,7 +59,8 @@ def callback(request):
                         event.reply_token,
                         message)
                     if 1:
-                        VCPUnewvalue = event.message.text
+                        VCPUnewvalue = []
+                        VCPUnewvalue = input('abc')
                         line_bot_api.reply_message(  # 回復「設定機房資訊」VCPU更改訊息
                             event.reply_token,
                             returna
