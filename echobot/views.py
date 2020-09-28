@@ -58,8 +58,7 @@ def callback(request):
                     line_bot_api.reply_message(
                         event.reply_token,
                         message)
-                    VCPUnewvalue = []
-                    VCPUnewvalue = event.message.text
+                    VCPUnewvalue = 10
                     flex_message = FlexSendMessage(
                         alt_text='hello',
                         contents={
