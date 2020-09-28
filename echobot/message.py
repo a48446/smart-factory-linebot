@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from linebot.models import TemplateSendMessage , ButtonsTemplate, PostbackAction , MessageAction , URIAction , CarouselColumn , CarouselTemplate , PostbackTemplateAction , FlexSendMessage
 from pymongo import MongoClient
 from bs4 import BeautifulSoup
+from views import callback
 
 client = MongoClient("mongodb://nutc.iot:nutciot5891@ds237922.mlab.com:37922/smart-data-center")
 db = client["smart-data-center"]
@@ -24,8 +25,6 @@ class Message(ABC):
     @abstractmethod
     def content(self):
         pass
-
-
 
 # 「功能列表」按鈕樣板訊息
 class Featuresmodel():
@@ -1463,3 +1462,119 @@ class Dailynews():
             }
         )
         return flex_message
+
+# 設定機房資訊回傳
+class roomset():
+    def returna(self):
+        flex_message = FlexSendMessage(
+            alt_text='hello',
+            contents={
+            "type": "bubble",
+            "header": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": "VCPU數量(顆):"+callback('VCPUnewvalue')
+                }
+                ],
+                "backgroundColor": "#F0F0F0"
+            },
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": []
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                        "type": "message",
+                        "label": "yes",
+                        "text": "yes"+'\n'+"接著設定機房資訊"+'\n'+'機房儲存空間(TB)'
+                        },
+                        "position": "absolute",
+                        "offsetStart": "20px"
+                    },
+                    {
+                        "type": "button",
+                        "action": {
+                        "type": "message",
+                        "label": "no",
+                        "text": "no"
+                        },
+                        "position": "relative",
+                        "offsetStart": "70px"
+                    }
+                    ]
+                }
+                ]
+            }
+            }
+        )
+        return flex_message
+
+    def returnb(self):
+        flex_message = FlexSendMessage(
+            alt_text='hello',
+            contents={
+            "type": "bubble",
+            "header": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": "RAM數量(GB):"+callback('RAMnewvalue')
+                }
+                ],
+                "backgroundColor": "#F0F0F0"
+            },
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": []
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                        "type": "message",
+                        "label": "yes",
+                        "text": "yes"+'\n'+"接著設定機房資訊"+'\n'+'機房Switch數量(台)'
+                        },
+                        "position": "absolute",
+                        "offsetStart": "20px"
+                    },
+                    {
+                        "type": "button",
+                        "action": {
+                        "type": "message",
+                        "label": "no",
+                        "text": "no"
+                        },
+                        "position": "relative",
+                        "offsetStart": "70px"
+                    }
+                    ]
+                }
+                ]
+            }
+            }
+        )
+        return flex_message 
