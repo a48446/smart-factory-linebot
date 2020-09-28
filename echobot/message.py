@@ -1489,11 +1489,6 @@ class roomset():
                 {
                     "type": "box",
                     "layout": "vertical",
-                    "contents": []
-                },
-                {
-                    "type": "box",
-                    "layout": "vertical",
                     "contents": [
                     {
                         "type": "button",
