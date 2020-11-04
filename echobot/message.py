@@ -4,8 +4,8 @@ from linebot.models import TemplateSendMessage , ButtonsTemplate, PostbackAction
 from pymongo import MongoClient
 from bs4 import BeautifulSoup
 
-client = MongoClient("mongodb://nutc.iot:nutciot5891@ds237922.mlab.com:37922/smart-data-center")
-db = client["smart-data-center"]
+client = MongoClient("mongodb://ID")
+db = client["ID"]
 
 #mongoDB資料庫
 dl303data = db.dl303

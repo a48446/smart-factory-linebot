@@ -12,8 +12,8 @@ from django.conf import settings
 from .message import Featuresmodel , returnvalue  , controlwind , roomlable , roomResourceslable , Dailynews , roomset , db , inputreturn
 
 
-line_bot_api = LineBotApi('q7TWa/81a0nmW9GnqF6+u8qaFoMbi6q3Dq5VK2QM7FV8UIx3nQk5+luk5GpASk/bm5qtAmimAyA2/Ifdg6a0hH3dwMdfdAoRiGE8TF/IiRXriLsK7j9FDHlQUC34zr7EXiktLqyT5btGhtCTJXbTZQdB04t89/1O/w1cDnyilFU=')
-parser = WebhookParser("57141ec8f7ba725d4fa3fa97a5bd5169")
+line_bot_api = LineBotApi('ID')
+parser = WebhookParser("ID")
 
 @csrf_exempt
 def callback(request):
